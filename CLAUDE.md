@@ -6,14 +6,15 @@ Live at: **jmonto512.github.io/SynergyFC-15-16-site**
 
 ## Stack
 
-React + Vite + TypeScript + Chakra UI. Deployed to GitHub Pages via GitHub Actions.
+React + Vite + TypeScript + Mantine. Deployed to GitHub Pages via GitHub Actions.
 
 | Tool | Purpose |
 |---|---|
 | Vite | Dev server and production bundler |
 | React | UI components |
 | TypeScript | Type safety |
-| Chakra UI v2 | Pre-built dark-mode components for new sections |
+| Mantine v7 | Layout components and responsive style props |
+| PostCSS | Required by Mantine for responsive props in custom CSS |
 
 ## Project Structure
 
@@ -23,7 +24,7 @@ src/
   main.tsx                   Home page entry
   policies-main.tsx          Policies page entry
   styles.css                 All custom CSS (unchanged design)
-  theme.ts                   Chakra theme (matches existing colors/fonts)
+  theme.ts                   Mantine theme (fonts, breakpoints)
   data/
     site.ts                  Contact info, links, age range
     pillars.ts               Four pillars content
@@ -63,7 +64,7 @@ Defined in `src/styles.css` and `src/theme.ts`.
 - Fonts: Cormorant Garamond (headings), Inter (body), JetBrains Mono (labels/buttons)
 - Breakpoints: 540px, 640px, 700px
 
-Use Chakra components (`Box`, `Stack`, `Card`, etc.) for new sections; they inherit the theme colors and fonts automatically.
+Use Mantine components (`Box`, `Stack`, `SimpleGrid`, `Group`, `Flex`, etc.) for new sections. Responsive style props use object syntax: `cols={{ base: 1, sm: 3 }}`. Custom breakpoints (xs=540px, sm=640px, md=700px) are defined in `src/theme.ts` and `postcss.config.cjs`.
 
 ## Editing content
 

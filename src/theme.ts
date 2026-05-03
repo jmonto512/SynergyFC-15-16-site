@@ -1,26 +1,18 @@
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+import { createTheme } from '@mantine/core'
 
-const config: ThemeConfig = {
-  initialColorMode: 'dark',
-  useSystemColorMode: false,
-}
-
-export const theme = extendTheme({
-  config,
-  styles: {
-    global: false,
+export const theme = createTheme({
+  fontFamily: "'Inter', system-ui, sans-serif",
+  fontFamilyMonospace: "'JetBrains Mono', 'Courier New', monospace",
+  headings: {
+    fontFamily: "'Cormorant Garamond', Georgia, serif",
+    fontWeight: '400',
   },
-  colors: {
-    brand: {
-      bg: '#0a0a0f',
-      text: '#e8e8e8',
-      muted: 'rgba(255,255,255,0.55)',
-      border: 'rgba(255,255,255,0.10)',
-    },
+  breakpoints: {
+    xs: '540px',
+    sm: '640px',
+    md: '700px',
+    lg: '900px',
+    xl: '1200px',
   },
-  fonts: {
-    heading: "'Cormorant Garamond', Georgia, serif",
-    body: "'Inter', system-ui, sans-serif",
-    mono: "'JetBrains Mono', 'Courier New', monospace",
-  },
+  defaultRadius: 0,
 })

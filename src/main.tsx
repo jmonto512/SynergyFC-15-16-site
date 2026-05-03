@@ -1,15 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { MantineProvider } from '@mantine/core'
+import '@mantine/core/styles.css'
 import { theme } from './theme'
 import './styles.css'
 import Home from './pages/Home'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <ChakraProvider theme={theme} resetCSS={false}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <Home />
-    </ChakraProvider>
+    </MantineProvider>
   </React.StrictMode>
 )

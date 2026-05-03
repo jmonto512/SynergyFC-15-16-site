@@ -1,3 +1,4 @@
+import { Group, SimpleGrid, Flex } from '@mantine/core'
 import { pillars } from '../data/pillars'
 import { learningAreas } from '../data/learningAreas'
 import { site } from '../data/site'
@@ -17,10 +18,10 @@ export default function Home() {
           We develop technically skilled, tactically intelligent players in a culture
           built on effort, precision, and love for the game.
         </p>
-        <div className="hero-buttons">
+        <Group gap={16} justify="center" wrap="wrap">
           <a href="#coaches" className="btn-outline">Meet the Coaches</a>
           <a href="#contact" className="btn-solid">Get in Touch</a>
-        </div>
+        </Group>
       </section>
 
       <div className="photo-banner section-border">
@@ -30,7 +31,7 @@ export default function Home() {
       <section id="coaches" className="content section-border">
         <p className="label">WHO ARE MY COACHES?</p>
         <h2>Meet Jeff &amp; Ashley Montone</h2>
-        <div className="coach-layout">
+        <Flex gap={40} align="flex-start" direction={{ base: 'column', sm: 'row' }}>
           <div className="coach-photos">
             <img className="coach-photo" src={`${base}assets/images/PXL_20231111_220634438.PORTRAIT.jpg`} alt="Our kids in our old jerseys front" />
             <img className="coach-photo" src={`${base}assets/images/PXL_20231111_220612115.MP~2.jpg`} alt="Our kids in our old jerseys back" />
@@ -45,11 +46,11 @@ export default function Home() {
             <p>We've been through every stage of youth soccer as players and as parents, and we bring that firsthand perspective to everything we do on the training ground.</p>
             <p className="closing-line">This isn't a side project for us. It's personal.</p>
           </div>
-        </div>
+        </Flex>
       </section>
 
       <section className="hook section-border">
-        <div className="hook-grid">
+        <SimpleGrid cols={{ base: 1, md: 3 }} spacing={{ base: 12, md: 20 }} style={{ maxWidth: 960, margin: '0 auto' }}>
           <div className="hook-box">
             <p>At this age, development should come first. We get to know your player, build their game, and grow with them — not replace them.</p>
           </div>
@@ -59,7 +60,7 @@ export default function Home() {
           <div className="hook-box">
             <p>Every player we take on gets real attention and a real role on this team — not a spot that disappears when a guest player shows up.</p>
           </div>
-        </div>
+        </SimpleGrid>
       </section>
 
       <section className="content section-border">
