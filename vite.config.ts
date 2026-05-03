@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: './index.html',
         policies: './policies.html',
+        playerDevelopment: './player-development.html',
       },
     },
   },

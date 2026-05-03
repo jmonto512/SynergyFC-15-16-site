@@ -3,22 +3,28 @@ import { useDisclosure } from '@mantine/hooks'
 
 const base = import.meta.env.BASE_URL
 
-const navLinks = [
-  { label: 'Coaches', href: '#coaches' },
-  { label: 'Pillars', href: '#pillars' },
-  { label: 'Practice', href: '#practice' },
-  { label: 'Policies', href: `${base}policies.html` },
-  { label: 'Contact', href: '#contact' },
-]
+interface SiteHeaderProps {
+  inSubPage?: boolean
+}
 
-export default function SiteHeader() {
+export default function SiteHeader({ inSubPage = false }: SiteHeaderProps) {
   const [opened, { toggle, close }] = useDisclosure(false)
+  const prefix = inSubPage ? base : ''
+  const brandHref = inSubPage ? base : '#top'
+
+  const navLinks = [
+    { label: 'Coaches', href: `${prefix}#coaches` },
+    { label: 'Pillars', href: `${prefix}#pillars` },
+    { label: 'Development', href: `${prefix}#development` },
+    { label: 'Policies', href: `${base}policies.html` },
+    { label: 'Contact', href: `${prefix}#contact` },
+  ]
 
   return (
     <>
       <Box component="header" className="site-header">
         <Group justify="space-between" align="center" h="100%" px="md">
-          <Anchor href="#top" className="site-header-brand" underline="never">
+          <Anchor href={brandHref} className="site-header-brand" underline="never">
             <Text component="span">SYNERGY FC</Text>
           </Anchor>
 

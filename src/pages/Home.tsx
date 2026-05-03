@@ -12,29 +12,19 @@ import {
   BackgroundImage,
   Overlay,
   Box,
-  Tabs,
-  Badge,
 } from '@mantine/core'
-import { Carousel } from '@mantine/carousel'
 import { pillars } from '../data/pillars'
-import { learningAreas } from '../data/learningAreas'
+import { devTools } from '../data/devTools'
+import { quotes } from '../data/quotes'
 import { site } from '../data/site'
 import Pillar from '../components/Pillar'
+import DevTool from '../components/DevTool'
+import Quote from '../components/Quote'
 import SeasonResults from '../components/SeasonResults'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 
 const base = import.meta.env.BASE_URL
-
-const galleryPhotos = [
-  { src: 'team1.png', alt: 'Team photo' },
-  { src: 'rondo.jpg', alt: 'Rondo training drill' },
-  { src: 'team-teaching-1.jpg', alt: 'Coach teaching the team' },
-  { src: 'team2.png', alt: 'Team' },
-  { src: "03252025Rickey'sSoccer194.jpg", alt: 'Practice action' },
-  { src: "03252025Rickey'sSoccer328.jpg", alt: 'Practice action' },
-  { src: "03252025Rickey'sSoccer338.jpg", alt: 'Practice action' },
-]
 
 const coachPhotos: { src: string; alt: string; objectPosition?: string }[] = [
   { src: 'PXL_20231111_220634438.PORTRAIT.jpg', alt: 'Our kids in our old jerseys, front', objectPosition: 'center top' },
@@ -120,94 +110,100 @@ export default function Home() {
       {/* ─── SEASON RESULTS ─── */}
       <SeasonResults />
 
-      {/* ─── PLAYER DEVELOPMENT ─── */}
-      <Container size="lg" px="md" py={56} component="section" className="section-border">
-        <Text className="label">PLAYER DEVELOPMENT</Text>
-        <Title order={2} mb="xl">What will my son learn?</Title>
-        <Tabs
-          variant="pills"
-          color="gray"
-          defaultValue={learningAreas[0].title}
-          className="learning-tabs"
-          keepMounted={false}
-        >
-          <Tabs.List mb="xl" className="learning-tabs-list">
-            {learningAreas.map((area) => (
-              <Tabs.Tab key={area.title} value={area.title}>
-                {area.title}
-              </Tabs.Tab>
-            ))}
-          </Tabs.List>
-          {learningAreas.map((area) => (
-            <Tabs.Panel key={area.title} value={area.title}>
-              <Group gap="xs" wrap="wrap">
-                {area.skills.map((skill) => (
-                  <Badge
-                    key={skill}
-                    variant="outline"
-                    radius={0}
-                    tt="none"
-                    fz="sm"
-                    className="skill-badge"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </Group>
-            </Tabs.Panel>
-          ))}
-        </Tabs>
-      </Container>
+      {/* ─── HOW WE DEVELOP PLAYERS (merged section) ─── */}
+      <Container size="lg" px="md" py={56} component="section" id="development" className="section-border">
+        <Text className="label">HOW WE DEVELOP PLAYERS</Text>
+        <Title order={2} mb="xl">Where individual growth meets team play.</Title>
 
-      {/* ─── GALLERY (Carousel) ─── */}
-      <Box component="section" className="gallery" py={32}>
-        <Container size="lg" px="md" className="section-border">
-          <Carousel
-            slideSize={{ base: '100%', xs: '50%', md: '33.333%' }}
-            slideGap={{ base: 'xs', sm: 'md' }}
-            align="start"
-            withIndicators
-            withControls
-            loop
-            classNames={{
-              control: 'gallery-control',
-              indicator: 'gallery-indicator',
-            }}
-          >
-            {galleryPhotos.map((photo) => (
-              <Carousel.Slide key={photo.src}>
-                <Image
-                  src={`${base}assets/images/${photo.src}`}
-                  alt={photo.alt}
-                  h={280}
-                  fit="cover"
-                  className="gallery-photo"
-                />
-              </Carousel.Slide>
-            ))}
-          </Carousel>
-        </Container>
-      </Box>
+        {/* Block 1 — Lead + practice facts */}
+        <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl" mb={56}>
+          <Stack gap="md" justify="center">
+            <Text>
+              We coach the way the world's best youth academies coach: small-sided games,
+              rondos, and tactical scrimmages, with about a quarter of every practice on
+              focused technical work.
+            </Text>
+            <Text>
+              The result is players who can think <em>and</em> execute — not one or the other.
+            </Text>
+          </Stack>
 
-      {/* ─── PRACTICE ─── */}
-      <Container size="lg" px="md" py={56} component="section" id="practice" className="section-border">
-        <Text className="label">FULL TRANSPARENCY</Text>
-        <Title order={2} mb="xl">What does practice look like?</Title>
-        <Text mb="lg">
-          We believe in full transparency. Here's an actual practice plan so you can see
-          exactly what your son will experience — no secrets.
-        </Text>
-        <Card className="practice-box" withBorder shadow="sm" padding="xl" radius="md">
-          <Text mb="md">
-            Our pattern: <span>Technical Block</span> (unopposed → opposed)
-            → <span>Tactical Block</span> (small-sided games for team principles)
-            → <span>Scrimmage</span> (apply everything in a fully unrestricted environment)
+          <Card className="practice-box" withBorder shadow="sm" padding="xl" radius="md">
+            <Stack gap="sm">
+              <Text>
+                <span>Where:</span> Paloma Community Park
+              </Text>
+              <Text>
+                <span>When:</span> Two nights a week
+              </Text>
+              <Text>
+                <span>Practice arc:</span> Technical Block → Tactical Block → Scrimmage
+              </Text>
+              <Anchor
+                href={site.links.samplePractice}
+                target="_blank"
+                rel="noreferrer"
+                className="practice-link"
+                mt="xs"
+              >
+                View a Sample Practice →
+              </Anchor>
+            </Stack>
+          </Card>
+        </SimpleGrid>
+
+        {/* Block 2 — Four individual development tools */}
+        <Box mb={56}>
+          <Text className="label">INDIVIDUAL DEVELOPMENT, BUILT IN</Text>
+          <Title order={3} mb="sm" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: 'white', fontWeight: 400, fontSize: 28 }}>
+            Four tools that follow your son home.
+          </Title>
+          <Text mb="xl">
+            Practice is for the team. These four tools are for your son.
           </Text>
-          <Anchor href={site.links.samplePractice} target="_blank" rel="noreferrer" className="practice-link">
-            View a Sample Practice →
-          </Anchor>
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
+            {devTools.map((tool) => (
+              <DevTool key={tool.id} tool={tool} variant="compact" />
+            ))}
+          </SimpleGrid>
+        </Box>
+
+        {/* Block 3 — Philosophy pull-quote */}
+        <Box mb={56}>
+          <Quote
+            quote={quotes['knvb-driving-car']}
+            kicker="HOW WE TEACH"
+            framing="At U11, technique and game intelligence aren't a sequence — they grow together. Our practices teach passing, dribbling, and shooting inside the questions kids actually face on Saturday."
+          />
+        </Box>
+
+        {/* Block 4 — Sub-page promo */}
+        <Card
+          component="a"
+          href={`${base}player-development.html`}
+          className="policies-promo"
+          withBorder
+          radius="md"
+          padding={0}
+        >
+          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={0}>
+            <Image
+              src={`${base}assets/images/rondo.jpg`}
+              alt="Rondo training drill"
+              h={{ base: 180, sm: 220 }}
+              fit="cover"
+              className="policies-promo-img"
+            />
+            <Stack gap="sm" justify="center" p="xl">
+              <Text className="label" mb={0}>READ MORE</Text>
+              <Title order={3}>Player Development</Title>
+              <Text>
+                How we develop technique, game intelligence, and a love of the game — and
+                the tools that follow your son home.
+              </Text>
+            </Stack>
+          </SimpleGrid>
         </Card>
-        <Text className="practice-location">Location: Paloma Community Park · Two nights a week</Text>
       </Container>
 
       {/* ─── POLICIES PROMO ─── */}
