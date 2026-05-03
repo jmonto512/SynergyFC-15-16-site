@@ -142,11 +142,11 @@ export default function PlayerDevelopment() {
           personal plan.
         </Text>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
+        <Stack gap="lg">
           {devTools.map((tool) => (
             <DevTool key={tool.id} tool={tool} variant="full" />
           ))}
-        </SimpleGrid>
+        </Stack>
       </Container>
 
       {/* ─── 03 HIGHLIGHTS & LOVE OF THE GAME ─── */}
