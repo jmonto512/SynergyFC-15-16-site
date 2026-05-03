@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#1a1a22"/>
+  <rect x="1" y="1" width="1198" height="673" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="32" fill="rgba(255,255,255,0.5)">League Outcomes</text>
+  <text x="600" y="350" text-anchor="middle" font-family="monospace" font-size="14" fill="rgba(255,255,255,0.3)">PLACEHOLDER — replace with league-outcomes.png</text>
+  <text x="600" y="390" text-anchor="middle" font-family="monospace" font-size="12" fill="rgba(255,255,255,0.2)">public/assets/images/season-plan/league-outcomes.png</text>
+</svg>

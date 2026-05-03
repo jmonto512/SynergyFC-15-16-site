@@ -10,6 +10,7 @@
     "@mantine/carousel": "^7.17.8",
     "@mantine/core": "^7.0.0",
     "@mantine/hooks": "^7.0.0",
+    "@tabler/icons-react": "^3.41.1",
     "embla-carousel-react": "^7.1.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
