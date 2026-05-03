@@ -1,4 +1,4 @@
-import { createTheme } from '@mantine/core'
+import { createTheme, Button } from '@mantine/core'
 
 export const theme = createTheme({
   fontFamily: "'Inter', system-ui, sans-serif",
@@ -15,4 +15,11 @@ export const theme = createTheme({
     xl: '1200px',
   },
   defaultRadius: 0,
+  components: {
+    Button: Button.extend({
+      classNames: (_theme, props) => ({
+        root: props.variant === 'outline' ? 'btn-outline' : props.variant === 'filled' ? 'btn-solid' : '',
+      }),
+    }),
+  },
 })
