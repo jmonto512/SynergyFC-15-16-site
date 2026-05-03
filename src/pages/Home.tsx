@@ -136,23 +136,44 @@ export default function Home() {
               <Text>
                 <span>When:</span> Two nights a week
               </Text>
-              <Text>
-                <span>Practice arc:</span> Technical Block → Tactical Block → Scrimmage
-              </Text>
-              <Anchor
-                href={site.links.samplePractice}
-                target="_blank"
-                rel="noreferrer"
-                className="practice-link"
-                mt="xs"
-              >
-                View a Sample Practice →
-              </Anchor>
+              <Box pt="sm" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <Anchor
+                  href={site.links.samplePractice}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="practice-link"
+                >
+                  <Group gap={8} align="center">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style={{ opacity: 0.65, flexShrink: 0 }}>
+                      <path d="M5 0a1 1 0 0 0-1 1v1H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-1V1a1 1 0 0 0-1-1H5zm0 1h6v2H5V1zM3 3h1v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3h1a1 1 0 1 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+                    </svg>
+                    View a Sample Practice
+                  </Group>
+                </Anchor>
+              </Box>
             </Stack>
           </Card>
         </SimpleGrid>
 
-        {/* Block 2 — Four individual development tools */}
+        {/* Block 2 — Philosophy pull-quote */}
+        <Box
+          mb={56}
+          p="xl"
+          style={{
+            background: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: 8,
+          }}
+        >
+          <Quote
+            quote={quotes['knvb-driving-car']}
+            kicker="HOW WE TEACH"
+            framing="At U11, technique and game intelligence aren't a sequence — they grow together. Our practices teach passing, dribbling, and shooting inside the questions kids actually face on Saturday."
+            className=""
+          />
+        </Box>
+
+        {/* Block 3 — Four individual development tools */}
         <Box mb={56}>
           <Text className="label">INDIVIDUAL DEVELOPMENT, BUILT IN</Text>
           <Title order={3} mb="sm" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: 'white', fontWeight: 400, fontSize: 28 }}>
@@ -161,20 +182,11 @@ export default function Home() {
           <Text mb="xl">
             Practice is for the team. These four tools are for your son.
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" style={{ alignItems: 'start' }}>
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
             {devTools.map((tool) => (
               <DevTool key={tool.id} tool={tool} variant="compact" />
             ))}
           </SimpleGrid>
-        </Box>
-
-        {/* Block 3 — Philosophy pull-quote */}
-        <Box mb={56}>
-          <Quote
-            quote={quotes['knvb-driving-car']}
-            kicker="HOW WE TEACH"
-            framing="At U11, technique and game intelligence aren't a sequence — they grow together. Our practices teach passing, dribbling, and shooting inside the questions kids actually face on Saturday."
-          />
         </Box>
 
         {/* Block 4 — Sub-page promo */}

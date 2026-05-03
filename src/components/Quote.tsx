@@ -5,11 +5,12 @@ interface QuoteProps {
   quote: QuoteData
   kicker?: string
   framing?: string
+  className?: string
 }
 
-export default function Quote({ quote, kicker, framing }: QuoteProps) {
+export default function Quote({ quote, kicker, framing, className = 'learn-area' }: QuoteProps) {
   return (
-    <Box className="learn-area" mt="md" mb="md">
+    <Box className={className} mt="md" mb="md">
       {kicker && <Text className="label">{kicker}</Text>}
       <Text
         fs="italic"

@@ -24,11 +24,10 @@ import { learningAreas } from '../data/learningAreas'
 const base = import.meta.env.BASE_URL
 
 const philosophyImages = [
+  { src: 'action/teach-teaching-highlights.png', alt: 'Coach teaching highlights' },
   { src: 'action/rondo.jpg', alt: 'Rondo training drill' },
   { src: 'action/team-teaching-1.jpg', alt: 'Coach teaching the team' },
-  { src: "coaches/03252025Rickey'sSoccer194.jpg", alt: 'Practice action' },
   { src: "action/03252025Rickey'sSoccer328.jpg", alt: 'Practice action' },
-  { src: "coaches/03252025Rickey'sSoccer338.jpg", alt: 'One-on-one coaching' },
 ]
 
 export default function PlayerDevelopment() {
@@ -112,15 +111,23 @@ export default function PlayerDevelopment() {
             which is exactly what our practices look like.
           </Text>
 
-          <Box className="learn-area" mt="lg">
-            <h3>One last note</h3>
-            <p>
+          <Box
+            mt="lg"
+            p="xl"
+            style={{
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 8,
+            }}
+          >
+            <Text className="label" mb="xs">ONE LAST NOTE</Text>
+            <Text>
               Great coaches disagree about technique-first vs. game-first, and we respect both
               views. We've made our choice based on what we've seen work for U11 players —
               and on the same approach the world's most successful youth systems use. But
               ultimately, we just want your son to fall in love with this game and keep getting
               better.
-            </p>
+            </Text>
           </Box>
         </Stack>
       </Container>
@@ -135,7 +142,7 @@ export default function PlayerDevelopment() {
           personal plan.
         </Text>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" style={{ alignItems: 'start' }}>
+        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
           {devTools.map((tool) => (
             <DevTool key={tool.id} tool={tool} variant="full" />
           ))}
