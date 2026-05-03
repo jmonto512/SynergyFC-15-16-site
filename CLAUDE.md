@@ -19,23 +19,35 @@ React + Vite + TypeScript + Mantine. Deployed to GitHub Pages via GitHub Actions
 ## Project Structure
 
 ```
-index.html / policies.html   Vite HTML entry points (minimal shell only)
+index.html                   Home page HTML entry
+policies.html                Policies page HTML entry
+player-development.html      Player development page HTML entry
 src/
   main.tsx                   Home page entry
   policies-main.tsx          Policies page entry
-  styles.css                 All custom CSS (unchanged design)
+  player-development-main.tsx  Player development page entry
+  styles.css                 All custom CSS
   theme.ts                   Mantine theme (fonts, breakpoints)
   data/
     site.ts                  Contact info, links, age range
     pillars.ts               Four pillars content
     learningAreas.ts         Technical/Tactical/Psychological/Physical content
+    devTools.ts              Player development tools content and types
+    quotes.ts                Inspirational quotes content
+    seasonResults.ts         Season results/standings content
   components/
     Pillar.tsx               Single pillar card
-    LearningArea.tsx         Single learning area block
     Footer.tsx               Shared contact/footer section
+    DevTool.tsx              Single player development tool card
+    Quote.tsx                Inspirational quote display
+    SeasonResults.tsx        Season results/standings table
+    SiteHeader.tsx           Shared site navigation header
+    SubPageHero.tsx          Hero section for sub-pages
+    SubPageOverview.tsx      Overview/intro section for sub-pages
   pages/
     Home.tsx                 Full home page
     Policies.tsx             Full policies page
+    PlayerDevelopment.tsx    Player development page
 public/
   assets/images/             Team photos and action shots
   assets/icons/              Four pillar icons (PNG)
@@ -72,8 +84,12 @@ Use Mantine components (`Box`, `Stack`, `SimpleGrid`, `Group`, `Flex`, etc.) for
 |---|---|
 | Hero text, coach bio, gallery | `src/pages/Home.tsx` |
 | Policy text | `src/pages/Policies.tsx` |
+| Player development content | `src/pages/PlayerDevelopment.tsx` |
 | A pillar title or description | `src/data/pillars.ts` |
 | A learning area | `src/data/learningAreas.ts` |
+| A dev tool card | `src/data/devTools.ts` |
+| Quotes | `src/data/quotes.ts` |
+| Season results | `src/data/seasonResults.ts` |
 | Email, social links, age range | `src/data/site.ts` |
 | Add a photo | Drop in `public/assets/images/`, add `<img>` in `Home.tsx` |
 | Add a new page | Create `newpage.html` entry + `src/pages/NewPage.tsx`, add to `vite.config.ts` inputs |
