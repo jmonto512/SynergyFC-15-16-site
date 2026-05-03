@@ -29,7 +29,7 @@ export default function DevTool({ tool, variant }: DevToolProps) {
           alt={tool.name}
           fit="contain"
           style={{ maxHeight: '100%', width: 'auto' }}
-          fallbackSrc={`${base}assets/images/team-teaching-1.jpg`}
+          fallbackSrc={`${base}assets/images/action/team-teaching-1.jpg`}
         />
       </Box>
       {tool.secondaryImage && (

@@ -14,7 +14,7 @@ export default function SubPageHero({
   label,
   title,
   subtitle,
-  image = 'team-teaching-1.jpg',
+  image = 'action/team-teaching-1.jpg',
   minHeight = '40vh',
 }: SubPageHeroProps) {
   const src = image.startsWith('http') || image.startsWith('/')

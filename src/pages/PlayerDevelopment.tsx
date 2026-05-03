@@ -24,11 +24,11 @@ import { learningAreas } from '../data/learningAreas'
 const base = import.meta.env.BASE_URL
 
 const philosophyImages = [
-  { src: 'rondo.jpg', alt: 'Rondo training drill' },
-  { src: 'team-teaching-1.jpg', alt: 'Coach teaching the team' },
-  { src: "03252025Rickey'sSoccer194.jpg", alt: 'Practice action' },
-  { src: "03252025Rickey'sSoccer328.jpg", alt: 'Practice action' },
-  { src: "03252025Rickey'sSoccer338.jpg", alt: 'One-on-one coaching' },
+  { src: 'action/rondo.jpg', alt: 'Rondo training drill' },
+  { src: 'action/team-teaching-1.jpg', alt: 'Coach teaching the team' },
+  { src: "coaches/03252025Rickey'sSoccer194.jpg", alt: 'Practice action' },
+  { src: "action/03252025Rickey'sSoccer328.jpg", alt: 'Practice action' },
+  { src: "coaches/03252025Rickey'sSoccer338.jpg", alt: 'One-on-one coaching' },
 ]
 
 export default function PlayerDevelopment() {
@@ -40,7 +40,7 @@ export default function PlayerDevelopment() {
         label="PLAYER DEVELOPMENT"
         title="How a Synergy FC player grows."
         subtitle="Technique through play. Game intelligence from the start. Tools that follow your son home."
-        image="rondo.jpg"
+        image="action/rondo.jpg"
       />
 
       <SubPageOverview

@@ -12,7 +12,7 @@ export default function Policies() {
       <SubPageHero
         label="TEAM POLICIES"
         title="How we run this team."
-        image="team-teaching-1.jpg"
+        image="action/team-teaching-1.jpg"
       />
 
       <SubPageOverview

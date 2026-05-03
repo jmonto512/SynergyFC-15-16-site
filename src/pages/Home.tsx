@@ -27,10 +27,10 @@ import SiteHeader from '../components/SiteHeader'
 const base = import.meta.env.BASE_URL
 
 const coachPhotos: { src: string; alt: string; objectPosition?: string }[] = [
-  { src: 'PXL_20231111_220634438.PORTRAIT.jpg', alt: 'Our kids in our old jerseys, front', objectPosition: 'center top' },
-  { src: 'PXL_20231111_220612115.MP~2.jpg', alt: 'Our kids in our old jerseys, back' },
-  { src: "03252025Rickey'sSoccer194.jpg", alt: 'Coaching the team' },
-  { src: "03252025Rickey'sSoccer338.jpg", alt: 'Coaching one-on-one' },
+  { src: 'coaches/PXL_20231111_220634438.PORTRAIT.jpg', alt: 'Our kids in our old jerseys, front', objectPosition: 'center top' },
+  { src: 'coaches/PXL_20231111_220612115.MP~2.jpg', alt: 'Our kids in our old jerseys, back' },
+  { src: "coaches/03252025Rickey'sSoccer194.jpg", alt: 'Coaching the team' },
+  { src: "coaches/03252025Rickey'sSoccer338.jpg", alt: 'Coaching one-on-one' },
 ]
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
       {/* ─── HERO ─── */}
       <Box className="hero-wrap">
         <BackgroundImage
-          src={`${base}assets/images/team1.png`}
+          src={`${base}assets/images/hero/team1.png`}
           className="hero-bg"
         >
           <Overlay
@@ -188,7 +188,7 @@ export default function Home() {
         >
           <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={0}>
             <Image
-              src={`${base}assets/images/rondo.jpg`}
+              src={`${base}assets/images/action/rondo.jpg`}
               alt="Rondo training drill"
               h={{ base: 180, sm: 220 }}
               fit="cover"
@@ -218,7 +218,7 @@ export default function Home() {
         >
           <SimpleGrid cols={{ base: 1, sm: 2 }} spacing={0}>
             <Image
-              src={`${base}assets/images/team-teaching-1.jpg`}
+              src={`${base}assets/images/action/team-teaching-1.jpg`}
               alt="Coaching the team"
               h={{ base: 180, sm: 220 }}
               fit="cover"

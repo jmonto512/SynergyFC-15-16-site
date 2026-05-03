@@ -29,7 +29,7 @@ export default function SeasonResults() {
       <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
         <Stack gap="xs">
           <Image
-            src={`${base}assets/images/champions1.jpg`}
+            src={`${base}assets/images/results/champions1.jpg`}
             alt="Team after winning the RSL-AZ Holiday Classic 2025"
             className="season-photo"
             fit="cover"
