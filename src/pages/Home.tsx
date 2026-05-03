@@ -161,7 +161,7 @@ export default function Home() {
           <Text mb="xl">
             Practice is for the team. These four tools are for your son.
           </Text>
-          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
+          <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg" style={{ alignItems: 'start' }}>
             {devTools.map((tool) => (
               <DevTool key={tool.id} tool={tool} variant="compact" />
             ))}

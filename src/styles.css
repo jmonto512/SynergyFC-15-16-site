@@ -254,6 +254,22 @@
       filter: brightness(1.85) contrast(1.05) drop-shadow(0 0 6px rgba(255, 255, 255, 0.18));
     }
 
+    /* ─── DEV TOOL CARD (tighter than default pillar-card) ─── */
+    .dev-tool-card .mantine-Title-root {
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    .dev-tool-card .mantine-Text-root {
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+    }
+
+    .dev-tool-card .practice-link {
+      font-size: 11px !important;
+      letter-spacing: 1.5px;
+    }
+
     /* ─── LEARNING TABS ─── */
     .learning-tabs-list {
       gap: 8px;

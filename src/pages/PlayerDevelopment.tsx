@@ -135,7 +135,7 @@ export default function PlayerDevelopment() {
           personal plan.
         </Text>
 
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg">
+        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="lg" style={{ alignItems: 'start' }}>
           {devTools.map((tool) => (
             <DevTool key={tool.id} tool={tool} variant="full" />
           ))}
