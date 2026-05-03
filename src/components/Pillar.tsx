@@ -6,7 +6,7 @@ export default function Pillar({ icon, title, body }: PillarData) {
     <Card className="pillar-card" withBorder padding="xl" radius="md" h="100%">
       <Stack gap="md">
         <ThemeIcon
-          size={64}
+          size={96}
           radius="md"
           variant="default"
           className="pillar-icon-wrap"
@@ -14,8 +14,8 @@ export default function Pillar({ icon, title, body }: PillarData) {
           <Image
             src={`${import.meta.env.BASE_URL}assets/icons/${icon}`}
             alt=""
-            w={40}
-            h={40}
+            w={64}
+            h={64}
             className="pillar-icon"
             fit="contain"
           />

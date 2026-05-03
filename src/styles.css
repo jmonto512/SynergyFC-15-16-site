@@ -23,7 +23,7 @@
     }
 
     .section-border {
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 2px solid rgba(255,255,255,0.18);
     }
 
     /* ─── SITE HEADER (sticky nav) ─── */
@@ -193,6 +193,31 @@
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
+    .mantine-Container-root .coach-kicker {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.4;
+      color: white;
+      margin-top: 12px;
+      padding-top: 20px;
+      position: relative;
+    }
+
+    .mantine-Container-root .coach-kicker::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .mantine-Container-root .coach-kicker em {
+      font-style: italic;
+      color: white;
+    }
+
     /* ─── PILLARS (Card grid) ─── */
     .pillar-card {
       background: rgba(255, 255, 255, 0.02) !important;
@@ -226,7 +251,7 @@
 
     .pillar-icon {
       opacity: 1;
-      filter: brightness(1.4);
+      filter: brightness(1.85) contrast(1.05) drop-shadow(0 0 6px rgba(255, 255, 255, 0.18));
     }
 
     /* ─── LEARNING TABS ─── */
@@ -331,6 +356,64 @@
 
     .policies-promo-img {
       opacity: 0.85;
+    }
+
+    /* ─── SEASON RESULTS ─── */
+    .season-photo {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      opacity: 0.9;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--mantine-radius-md);
+      transition: opacity 0.3s;
+    }
+
+    .season-photo:hover {
+      opacity: 1;
+    }
+
+    .result-card {
+      padding: 16px 20px !important;
+    }
+
+    .result-card .skill-badge.result-rank {
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 10px !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+      padding: 6px 10px !important;
+      flex-shrink: 0;
+      min-width: 92px;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .result-card .result-competition {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px !important;
+      line-height: 1.3 !important;
+      color: white !important;
+    }
+
+    .result-card .result-detail {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px !important;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55) !important;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 540px) {
+      .result-card .result-competition {
+        font-size: 17px !important;
+      }
+      .result-card .skill-badge.result-rank {
+        min-width: 78px;
+        font-size: 9px !important;
+      }
     }
 
     /* ─── SKILL BADGES (used inside learning tabs) ─── */

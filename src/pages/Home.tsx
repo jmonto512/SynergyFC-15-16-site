@@ -20,6 +20,7 @@ import { pillars } from '../data/pillars'
 import { learningAreas } from '../data/learningAreas'
 import { site } from '../data/site'
 import Pillar from '../components/Pillar'
+import SeasonResults from '../components/SeasonResults'
 import Footer from '../components/Footer'
 import SiteHeader from '../components/SiteHeader'
 
@@ -35,8 +36,8 @@ const galleryPhotos = [
   { src: "03252025Rickey'sSoccer338.jpg", alt: 'Practice action' },
 ]
 
-const coachPhotos = [
-  { src: 'PXL_20231111_220634438.PORTRAIT.jpg', alt: 'Our kids in our old jerseys, front' },
+const coachPhotos: { src: string; alt: string; objectPosition?: string }[] = [
+  { src: 'PXL_20231111_220634438.PORTRAIT.jpg', alt: 'Our kids in our old jerseys, front', objectPosition: 'center top' },
   { src: 'PXL_20231111_220612115.MP~2.jpg', alt: 'Our kids in our old jerseys, back' },
   { src: "03252025Rickey'sSoccer194.jpg", alt: 'Coaching the team' },
   { src: "03252025Rickey'sSoccer338.jpg", alt: 'Coaching one-on-one' },
@@ -49,7 +50,7 @@ export default function Home() {
       <div id="top" />
 
       {/* ─── HERO ─── */}
-      <Box className="hero-wrap section-border">
+      <Box className="hero-wrap">
         <BackgroundImage
           src={`${base}assets/images/team1.png`}
           className="hero-bg"
@@ -74,6 +75,8 @@ export default function Home() {
           </Box>
         </BackgroundImage>
       </Box>
+      <Container size="lg" px="md" className="section-border" />
+
 
       {/* ─── COACHES ─── */}
       <Container size="lg" px="md" py={56} component="section" id="coaches" className="section-border">
@@ -88,6 +91,7 @@ export default function Home() {
                 alt={photo.alt}
                 className="coach-photo"
                 fit="cover"
+                style={photo.objectPosition ? { objectPosition: photo.objectPosition } : undefined}
               />
             ))}
           </SimpleGrid>
@@ -97,7 +101,7 @@ export default function Home() {
             <Text>At U11, the single most important factor in youth development is the coach. Our job is to build an environment where players learn to think for themselves, solve problems on the field, and develop the persistence, effort, and teamwork that will serve them far beyond soccer.</Text>
             <Text>We've spent the last three years at the club level, creating a culture where our players develop real skills, compete with confidence, and — most importantly — fall in love with the sport the way we did.</Text>
             <Text>We've been through every stage of youth soccer as players and as parents, and we bring that firsthand perspective to everything we do on the training ground.</Text>
-            <Text>This isn't a side project for us. <em>It's personal.</em></Text>
+            <Text className="coach-kicker">This isn't a side project for us. <em>It's personal.</em></Text>
           </Stack>
         </SimpleGrid>
       </Container>
@@ -112,6 +116,9 @@ export default function Home() {
           ))}
         </SimpleGrid>
       </Container>
+
+      {/* ─── SEASON RESULTS ─── */}
+      <SeasonResults />
 
       {/* ─── PLAYER DEVELOPMENT ─── */}
       <Container size="lg" px="md" py={56} component="section" className="section-border">
@@ -153,8 +160,8 @@ export default function Home() {
       </Container>
 
       {/* ─── GALLERY (Carousel) ─── */}
-      <Box component="section" className="gallery section-border" py={32}>
-        <Container size="xl" px="md">
+      <Box component="section" className="gallery" py={32}>
+        <Container size="lg" px="md" className="section-border">
           <Carousel
             slideSize={{ base: '100%', xs: '50%', md: '33.333%' }}
             slideGap={{ base: 'xs', sm: 'md' }}
