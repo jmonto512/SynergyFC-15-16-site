@@ -239,7 +239,7 @@ export default function Home() {
             <Stack gap="sm" justify="center" p="xl">
               <Text className="label" mb={0}>READ MORE</Text>
               <Title order={3}>Team Policies</Title>
-              <Text>Philosophy, development stages, evaluations, playing time, and responsibilities.</Text>
+              <Text>How we assign positions, rotate players, and make sure every kid gets meaningful time — and why.</Text>
             </Stack>
           </SimpleGrid>
         </Card>

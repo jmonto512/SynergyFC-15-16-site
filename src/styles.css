@@ -652,6 +652,82 @@
       }
     }
 
+    /* ─── SECTION KICKER (quote callout band) ─── */
+    .section-kicker {
+      margin-top: 40px;
+      margin-left: calc(-1 * var(--mantine-spacing-md));
+      margin-right: calc(-1 * var(--mantine-spacing-md));
+      padding: 48px var(--mantine-spacing-md) 40px;
+      background: rgba(255,255,255,0.025);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-kicker::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 220px;
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      top: -48px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .section-kicker .mantine-Text-root {
+      position: relative;
+      font-family: 'Cormorant Garamond', Georgia, serif !important;
+      font-size: clamp(20px, 2.5vw, 26px) !important;
+      color: white !important;
+      line-height: 1.5 !important;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ─── POLICIES FAQ ACCORDION ─── */
+    .policies-faq .mantine-Accordion-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      border-radius: 0 !important;
+    }
+
+    .policies-faq .mantine-Accordion-item[data-active] {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.22) !important;
+    }
+
+    .policies-faq .mantine-Accordion-control {
+      padding: 20px 24px;
+      background: transparent !important;
+    }
+
+    .policies-faq .mantine-Accordion-control:hover {
+      background: rgba(255,255,255,0.025) !important;
+    }
+
+    .policies-faq .mantine-Accordion-label {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(18px, 2vw, 21px);
+      color: white;
+      line-height: 1.3;
+    }
+
+    .policies-faq .mantine-Accordion-content {
+      padding: 0 24px 20px;
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.68);
+    }
+
+    .policies-faq .mantine-Accordion-chevron {
+      color: rgba(255,255,255,0.4);
+    }
+
     /* ─── LEARN AREA (policies page) ─── */
     .learn-area {
       margin-bottom: 32px;

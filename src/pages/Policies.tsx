@@ -1,4 +1,4 @@
-import { Container, Title, Text, Stack, Box } from '@mantine/core'
+import { Container, Title, Text, Stack, Box, SimpleGrid, Accordion } from '@mantine/core'
 import SiteHeader from '../components/SiteHeader'
 import SubPageHero from '../components/SubPageHero'
 import SubPageOverview from '../components/SubPageOverview'
@@ -76,18 +76,96 @@ export default function Policies() {
           <Box className="learn-area" mt="lg">
             <h3>Why?</h3>
             <p>
-              Kids are developing physically, mentally, and as soccer players. A person's
-              strengths at age 11 may look completely different at 16. Strict focus on a
-              single position is not in the best long-term interest of a developing player.
+              The Dutch KNVB and clubs like Ajax deliberately avoid position-specific
+              training until age 15 — not as an oversight, but as a core development
+              principle. A player's strengths at 11 look nothing like their strengths at 16.
             </p>
           </Box>
 
-          <Text>All players attack. All players defend.</Text>
-          <Text>All players must be involved in the game as a unit.</Text>
-          <Text>
-            Switching positions in-game — temporarily — is a fundamental component of
-            successful soccer tactics.
-          </Text>
+          <Box
+            style={{
+              borderLeft: '2px solid rgba(255,255,255,0.2)',
+              paddingLeft: 24,
+              marginBottom: 40,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(19px, 2.5vw, 23px)',
+                color: 'white',
+                lineHeight: 1.55,
+                fontStyle: 'italic',
+              }}
+            >
+              "Defenders who only play centrally learn to think one-dimensionally.
+              Outside backs must learn to anticipate and cover space creatively."
+            </Text>
+            <Text
+              mt="xs"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '2px',
+                color: 'rgba(255,255,255,0.4)',
+                textTransform: 'uppercase',
+              }}
+            >
+              — KNVB / Dutch Youth Development
+            </Text>
+          </Box>
+
+          <SimpleGrid cols={{ base: 1, xs: 2, sm: 4 }} spacing="sm" mb="xl">
+            {[
+              { ages: 'U11–U12', label: 'Free Discovery', desc: 'No position-specific training. Players explore the game freely.', active: true },
+              { ages: 'U13–U14', label: 'First Positions', desc: 'Positions assigned, but rotated week to week. Flexibility is key.' },
+              { ages: 'U15–U16', label: 'Finding Fit', desc: 'Clubs begin asking who fits where. Tailored development starts.' },
+              { ages: 'U17–U19', label: 'Specialization', desc: 'True position specialists emerge for the first time.' },
+            ].map(({ ages, label, desc, active }) => (
+              <Box
+                key={ages}
+                p="md"
+                style={{
+                  background: active ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.02)',
+                  border: `1px solid ${active ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)'}`,
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 10,
+                    letterSpacing: '2px',
+                    color: active ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.4)',
+                    textTransform: 'uppercase',
+                    marginBottom: 8,
+                  }}
+                >
+                  {ages}{active && ' · us'}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
+                    fontSize: 18,
+                    color: 'white',
+                    marginBottom: 6,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {label}
+                </Text>
+                <Text style={{ fontSize: 13, lineHeight: 1.65, color: 'rgba(255,255,255,0.6)' }}>
+                  {desc}
+                </Text>
+              </Box>
+            ))}
+          </SimpleGrid>
+
+          <Box className="section-kicker">
+            <Text>
+              All players attack. All players defend. Switching positions is not a
+              mistake — it's the point.
+            </Text>
+          </Box>
         </Stack>
       </Container>
 
@@ -97,54 +175,93 @@ export default function Policies() {
         <Title order={2} mb="md">Our goal for every player</Title>
         <Stack gap="md">
           <Text>
-            All players should play roughly half of every game. This isn't a guarantee or an
-            exact science — but it is our standard. Players who are significantly behind due
-            to missed practices, games, or injury will play less than 50%.
-          </Text>
-          <Text>
-            Our roster target is only 3–4 subs available per game, which means most players
-            will see 66% to 75% or more of game time. The game is the best teacher — players
-            need time on the field.
+            All players should play roughly half of every game — that's our standard, not a
+            guarantee. We keep rosters to 3–4 subs per game, so most players see 66–75% or
+            more of game time. Players significantly behind due to missed practices or injury
+            will play less.
           </Text>
 
           <Box className="learn-area" mt="lg">
-            <h3>Does this mean we don't care about winning?</h3>
+            <h3>Why?</h3>
             <p>
-              No. We play to win every game. But we only win as a team — which means we
-              operate with a "next man up" philosophy.
+              At this age, players need the freedom to take risks without fear of losing their
+              spot. If a player is afraid that one bad touch costs them minutes, they stop
+              being creative. They stop trying things they haven't mastered yet. And that's
+              exactly when development stops.
             </p>
           </Box>
 
-          <Box className="policy-list">
-            <Box className="policy-item">
-              <span className="policy-num">—</span>
-              <p>At this age, every player who commits to the team deserves a chance to develop.</p>
-            </Box>
-            <Box className="policy-item">
-              <span className="policy-num">—</span>
-              <p>At our club level, families should be able to go on vacation and miss an occasional tournament without consequence.</p>
-            </Box>
-            <Box className="policy-item">
-              <span className="policy-num">—</span>
-              <p>We often play multiple games in a day. A deep, rested roster wins games — tired players don't.</p>
-            </Box>
-            <Box className="policy-item">
-              <span className="policy-num">—</span>
-              <p>Arizona isn't exactly cool. If players are moving without the ball — as they should be — they will need a break.</p>
-            </Box>
-          </Box>
-
-          <Text
-            mt="lg"
+          <Box
             style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: 'clamp(22px, 3vw, 28px)',
-              color: 'white',
-              lineHeight: 1.4,
+              borderLeft: '2px solid rgba(255,255,255,0.2)',
+              paddingLeft: 24,
+              marginBottom: 40,
             }}
           >
-            We build teams. Teams win games.
-          </Text>
+            <Text
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontSize: 'clamp(19px, 2.5vw, 23px)',
+                color: 'white',
+                lineHeight: 1.55,
+                fontStyle: 'italic',
+              }}
+            >
+              "One must and has the right to make mistakes, for this is the only way to learn."
+            </Text>
+            <Text
+              mt="xs"
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '2px',
+                color: 'rgba(255,255,255,0.4)',
+                textTransform: 'uppercase',
+              }}
+            >
+              — Dutch Football Culture
+            </Text>
+          </Box>
+
+          <Accordion className="policies-faq" variant="separated" chevronPosition="right">
+            <Accordion.Item value="winning">
+              <Accordion.Control>What about winning?</Accordion.Control>
+              <Accordion.Panel>
+                We play to win every game. But we only win as a team — which means we operate
+                with a "next man up" mindset. The depth of the roster is an advantage, not a compromise.
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="multiple-games">
+              <Accordion.Control>What about playing multiple games in a day?</Accordion.Control>
+              <Accordion.Panel>
+                A deep, rested roster wins games — tired players don't. Rotating through a full
+                squad isn't charity; it's strategy.
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="heat">
+              <Accordion.Control>Does the Arizona heat factor in?</Accordion.Control>
+              <Accordion.Panel>
+                Players are expected to move without the ball — and in Arizona, players who do that
+                will need a break. That's not optional; it's safety and performance.
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="vacation">
+              <Accordion.Control>What if we need to miss a tournament?</Accordion.Control>
+              <Accordion.Panel>
+                At our club level, life happens. Families should be able to take a vacation or miss
+                an event without it defining their kid's place on the team or their minutes when they return.
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+
+          <Box className="section-kicker">
+            <Text>
+              We build teams. Teams win games.
+            </Text>
+          </Box>
         </Stack>
       </Container>
 
