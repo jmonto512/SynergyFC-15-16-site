@@ -39,9 +39,9 @@ function SlideHeading({ title, center }: { title: string; center?: boolean }) {
       </Title>
       <Box
         style={{
-          width: 48,
-          height: 1,
-          background: 'rgba(255,255,255,0.2)',
+          width: 80,
+          height: 2,
+          background: 'linear-gradient(to right, rgba(255,255,255,0.5), rgba(255,255,255,0.08))',
           margin: center ? '16px auto 24px' : '16px 0 24px',
         }}
       />
@@ -134,10 +134,10 @@ function RenderTitle({ slide }: { slide: TitleSlide }) {
       <Text
         style={{
           fontFamily: MONO,
-          fontSize: 11,
-          letterSpacing: '4px',
+          fontSize: 13,
+          letterSpacing: '5px',
           textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.4)',
+          color: 'rgba(255,255,255,0.65)',
           marginBottom: 28,
         }}
       >
@@ -211,14 +211,17 @@ function RenderDivider({ slide }: { slide: DividerSlide }) {
   )
 }
 
+const GOLD = 'rgba(212,175,80,'
+
 function SlideKicker({ text }: { text: string }) {
   return (
     <Box
       style={{
-        marginTop: 20,
-        padding: '20px 40px',
-        background: 'rgba(255,255,255,0.025)',
-        borderTop: '1px solid rgba(255,255,255,0.1)',
+        marginTop: 28,
+        padding: '26px 48px 28px',
+        background: `linear-gradient(135deg, ${GOLD}0.07) 0%, rgba(255,255,255,0.05) 50%, ${GOLD}0.05) 100%)`,
+        border: `1px solid ${GOLD}0.2)`,
+        borderTop: `2px solid ${GOLD}0.75)`,
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
@@ -227,12 +230,12 @@ function SlideKicker({ text }: { text: string }) {
       <Box
         style={{
           position: 'absolute',
-          top: -32,
+          top: -28,
           left: '50%',
           transform: 'translateX(-50%)',
           fontFamily: SERIF,
           fontSize: 160,
-          color: 'rgba(255,255,255,0.04)',
+          color: `${GOLD}0.12)`,
           lineHeight: 1,
           pointerEvents: 'none',
           userSelect: 'none',
@@ -246,8 +249,8 @@ function SlideKicker({ text }: { text: string }) {
           fontFamily: SERIF,
           fontSize: 'clamp(15px, 1.7vw, 22px)',
           fontStyle: 'italic',
-          color: 'white',
-          lineHeight: 1.55,
+          color: 'rgba(255,255,255,0.95)',
+          lineHeight: 1.6,
           maxWidth: 860,
           margin: '0 auto',
         }}

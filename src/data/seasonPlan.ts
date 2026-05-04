@@ -96,14 +96,15 @@ export const slides: Slide[] = [
             ],
           },
           '3 new players already planned',
-          'Hope to add in tryouts but only if they have a basic club level foundation; will start with ~10 if needed, goal of 12–13',
+          'We hope to add in tryouts but only if they have a basic club level foundation.',
+          "We will start with ~10 if needed, goal of 12–13",
         ],
       },
       {
         heading: 'Competition Level',
         icon: IconTrophy,
         items: [
-          'Aim for 50% winning percentage — goal is close, competitive games',
+          'Aim for 50% winning percentage — my goal is close, competitive games',
           'There were 13 AZ Open League levels last season; we seek the next challenge, but also schedule games where we\'re favorites',
           'Can\'t guarantee Division 8 or "silver" — too much unknown going in',
           'Why close games? Skill: 9-0 wins don\'t help — soccer is "time & space", better competition forces improvement',

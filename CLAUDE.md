@@ -8,13 +8,13 @@ Live at: **jmonto512.github.io/SynergyFC-15-16-site**
 
 React + Vite + TypeScript + Mantine. Deployed to GitHub Pages via GitHub Actions.
 
-| Tool | Purpose |
-|---|---|
-| Vite | Dev server and production bundler |
-| React | UI components |
-| TypeScript | Type safety |
-| Mantine v7 | Layout components and responsive style props |
-| PostCSS | Required by Mantine for responsive props in custom CSS |
+| Tool       | Purpose                                                |
+| ---------- | ------------------------------------------------------ |
+| Vite       | Dev server and production bundler                      |
+| React      | UI components                                          |
+| TypeScript | Type safety                                            |
+| Mantine v7 | Layout components and responsive style props           |
+| PostCSS    | Required by Mantine for responsive props in custom CSS |
 
 ## Project Structure
 
@@ -80,19 +80,19 @@ Use Mantine components (`Box`, `Stack`, `SimpleGrid`, `Group`, `Flex`, etc.) for
 
 ## Editing content
 
-| Task | File |
-|---|---|
-| Hero text, coach bio, gallery | `src/pages/Home.tsx` |
-| Policy text | `src/pages/Policies.tsx` |
-| Player development content | `src/pages/PlayerDevelopment.tsx` |
-| A pillar title or description | `src/data/pillars.ts` |
-| A learning area | `src/data/learningAreas.ts` |
-| A dev tool card | `src/data/devTools.ts` |
-| Quotes | `src/data/quotes.ts` |
-| Season results | `src/data/seasonResults.ts` |
-| Email, social links, age range | `src/data/site.ts` |
-| Add a photo | Drop in `public/assets/images/`, add `<img>` in `Home.tsx` |
-| Add a new page | Create `newpage.html` entry + `src/pages/NewPage.tsx`, add to `vite.config.ts` inputs |
+| Task                           | File                                                                                  |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| Hero text, coach bio, gallery  | `src/pages/Home.tsx`                                                                  |
+| Policy text                    | `src/pages/Policies.tsx`                                                              |
+| Player development content     | `src/pages/PlayerDevelopment.tsx`                                                     |
+| A pillar title or description  | `src/data/pillars.ts`                                                                 |
+| A learning area                | `src/data/learningAreas.ts`                                                           |
+| A dev tool card                | `src/data/devTools.ts`                                                                |
+| Quotes                         | `src/data/quotes.ts`                                                                  |
+| Season results                 | `src/data/seasonResults.ts`                                                           |
+| Email, social links, age range | `src/data/site.ts`                                                                    |
+| Add a photo                    | Drop in `public/assets/images/`, add `<img>` in `Home.tsx`                            |
+| Add a new page                 | Create `newpage.html` entry + `src/pages/NewPage.tsx`, add to `vite.config.ts` inputs |
 
 ## Future server migration
 
