@@ -39,7 +39,7 @@ export default function Policies() {
         <Stack gap="md">
           <Text>
             Players are expected to play more than one general position — forward, midfielder,
-            or defender. For instance, while you may be best at center back, you're also
+            or defender. For instance, while a player may be best at center back, they're also
             expected to be comfortable stepping into a midfield role.
           </Text>
           <Text>
@@ -76,7 +76,7 @@ export default function Policies() {
           <Box className="learn-area" mt="lg">
             <h3>Why?</h3>
             <p>
-              The Dutch KNVB and clubs like Ajax deliberately avoid position-specific
+              The KNVB and clubs like Ajax deliberately avoid position-specific
               training until age 15 — not as an oversight, but as a core development
               principle. A player's strengths at 11 look nothing like their strengths at 16.
             </p>
@@ -177,8 +177,8 @@ export default function Policies() {
           <Text>
             All players should play roughly half of every game — that's our standard, not a
             guarantee. We keep rosters to 3–4 subs per game, so most players see 66–75% or
-            more of game time. Players significantly behind due to missed practices or injury
-            will play less.
+            more of game time. Players who have missed significant practice time due to absence
+            or injury will play less.
           </Text>
 
           <Box className="learn-area" mt="lg">

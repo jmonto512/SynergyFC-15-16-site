@@ -75,7 +75,7 @@ function BulletList({ items }: { items: BulletItem[] }) {
           return (
             <Group key={i} gap="sm" align="flex-start" wrap="nowrap">
               {DOT}
-              <Text style={{ fontSize: 'clamp(15px, 1.65vw, 20px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)' }}>
+              <Text style={{ fontSize: 'clamp(13px, 1.35vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)' }}>
                 {item}
               </Text>
             </Group>
@@ -85,7 +85,7 @@ function BulletList({ items }: { items: BulletItem[] }) {
           <Box key={i}>
             <Group gap="sm" align="flex-start" wrap="nowrap">
               {DOT}
-              <Text style={{ fontSize: 'clamp(15px, 1.65vw, 20px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)' }}>
+              <Text style={{ fontSize: 'clamp(13px, 1.35vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)' }}>
                 {item.label}
               </Text>
             </Group>
@@ -235,7 +235,9 @@ function SlideKicker({ text, href }: { text: string; href?: string }) {
           margin: '0 auto',
         }}
       >
-        "{text}"
+        "{text.split('\n').map((line, i, arr) => (
+          <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+        ))}"
       </Text>
       {href && (
         <Text
@@ -462,6 +464,13 @@ function RenderGrid({ slide }: { slide: GridSlide }) {
               />
             )}
             <div className="slide-card-title">{item.title}</div>
+            {item.tags && item.tags.length > 0 && (
+              <div className="slide-card-tags">
+                {item.tags.map((tag) => (
+                  <span key={tag} className="slide-card-tag">{tag}</span>
+                ))}
+              </div>
+            )}
             <div className="slide-card-body">{item.body}</div>
           </Box>
         ))}

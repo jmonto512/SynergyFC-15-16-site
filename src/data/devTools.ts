@@ -20,7 +20,7 @@ export const devTools: DevTool[] = [
     shortDescription:
       'A personal highlight reel from every match — what your son did well, and the next thing to work on.',
     longDescription:
-      "After games and tournaments, the coach saves a highlight reel for each player calling out their wins and the next thing to work on. Tied directly to your son's IDP so the feedback he gets on Saturday becomes the focus of his next training week.",
+      "After games and tournaments, the coach saves a highlight reel for each player highlighting their wins and the next thing to work on. It's tied directly to your son's IDP, so the feedback he gets on Saturday becomes the focus of his next training week.",
     link: 'https://traceup.com/',
   },
   {
@@ -51,7 +51,7 @@ export const devTools: DevTool[] = [
     image: 'anytime-soccer-training.png',
     status: 'rolling-out',
     shortDescription:
-      "Three hours a week isn't enough touches. A structured at-home program the coach assigns and tracks.",
+      "Three hours a week isn't enough touches. This is a structured at-home program the coach assigns and tracks.",
     longDescription:
       "Team practice alone doesn't build a great first touch. Anytime Soccer Training gives your son a structured at-home program — and lets the coach assign sessions, track progress, and align the work with his IDP.",
     link: 'https://www.anytime-soccer.com/',

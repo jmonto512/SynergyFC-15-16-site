@@ -12,13 +12,13 @@ export const pillars: Pillar[] = [
   },
   {
     icon: 'icon-mastery.png',
-    title: 'Mastery over the Scoreboard',
-    body: "We're building long-term talent for the higher leagues. We define our standard by mastery of the process — effort, focus, and technical precision. The scoreboard is a byproduct of high-intensity training; by focusing on mastery today, we ensure our players don't just win at U11.",
+    title: 'Built for the Next Level',
+    body: "We're building long-term talent for the higher leagues. We define our standard by mastery of the process — effort, focus, and technical precision. The scoreboard is a byproduct of high-intensity training; by focusing on mastery today, we ensure our players don't just win at U11 — they're built to excel at every level beyond it.",
   },
   {
     icon: 'icon-culture.png',
     title: 'High-Performance, Child-Centered Culture',
-    body: "The enjoyment of the game is the primary driver of improvement — you will not get better at a sport you don't love. Our love for the game is rooted in the pursuit of excellence. We provide a psychologically safe environment where players are encouraged to take risks, but we hold every player to a high standard of respect, discipline, and effort.",
+    body: "The enjoyment of the game is the primary driver of improvement — players will not get better at a sport they don't love. Our love for the game is rooted in the pursuit of excellence. We provide a psychologically safe environment where players are encouraged to take risks, but we hold every player to a high standard of respect, discipline, and effort.",
   },
   {
     icon: 'icon-growth.png',

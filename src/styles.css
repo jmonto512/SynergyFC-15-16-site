@@ -799,6 +799,24 @@
       color: rgba(255,255,255,0.62);
     }
 
+    .slide-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .slide-card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: rgba(212,175,80,0.75);
+      background: rgba(212,175,80,0.07);
+      border: 1px solid rgba(212,175,80,0.2);
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
     /* Tool cards (tools slide type) */
     .slide-tool-card {
       background: rgba(255,255,255,0.025);

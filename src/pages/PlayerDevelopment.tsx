@@ -80,7 +80,7 @@ export default function PlayerDevelopment() {
             A common question from parents:{' '}
             <em>"Team practices are filled with teamwork — small-sided games, rondos,
             scrimmages. So how does my son improve individually?"</em>{' '}
-            It's a fair question, and one we've thought about carefully.
+            It's a fair question — one we answer directly.
           </Text>
           <Text>
             Our answer is that technique and game intelligence aren't a sequence — they're a
@@ -104,7 +104,7 @@ export default function PlayerDevelopment() {
           <Quote quote={quotes['knvb-d-juniors']} kicker="WHY U11 IS THE RIGHT AGE" />
 
           <Text>
-            U11 corresponds to what the Dutch system calls the "D juniors." It's the age where
+            U11 corresponds to what the Dutch system calls the "D juniors." It's the age when
             kids understand the rules well enough to grasp the offensive and defensive shape of
             the game, and they're keen to learn how their abilities fit into the bigger picture.
             Coaches at this stage are encouraged to teach through simplified small-sided games —

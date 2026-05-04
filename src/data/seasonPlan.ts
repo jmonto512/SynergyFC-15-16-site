@@ -14,6 +14,7 @@ export interface GridItem {
   title: string
   body: string
   iconImage?: string
+  tags?: string[]
 }
 
 export interface ToolItem {
@@ -175,15 +176,13 @@ export const slides: Slide[] = [
         heading: 'Competition Level',
         icon: IconTrophy,
         items: [
-          'Aim for 50% winning percentage — my goal is close, competitive games',
-          'There were 13 AZ Open League levels last season; we seek the next challenge, but also schedule games where we\'re favorites',
-          'Can\'t guarantee Division 8 or "silver" — too much unknown going in',
-          'Why close games? Skill: 9-0 wins don\'t help — soccer is "time & space", better competition forces improvement',
-          'Character: Lessons from close games > any soccer skill',
+          'Target ~50% win rate — close, competitive games, not blowouts',
+          'We\'ll seek harder competition but also schedule winnable games; exact division is whatever challenges us',
+          'Tight games build skill (soccer is time & space) and character — both matter more than trophies',
         ],
       },
     ],
-    kicker: 'If you prioritize winning the U11 tournament as your definition of success, I\'m not your coach. If you want to win because you love the game and are competitive, I am your coach.',
+    kicker: 'If you prioritize winning the U11 tournament as your definition of success, I\'m not your coach.\nIf you want to win because you love the game and are competitive, I am your coach.',
   },
 
   // ── 6 ──────────────────────────────────────────────────────────
@@ -221,8 +220,8 @@ export const slides: Slide[] = [
           {
             label: "My coaching philosophy hasn't changed — but it wasn't shared by some players and parents last season",
             subitems: [
-              "That's my fault — I need to be much more direct about its importance this year",
-              'Please review our Core Values and Principles of Play',
+              "That's my fault — so this year I will be much more direct about its importance",
+              'Please review our Core Values and Principles of Play — not words on a page; players will learn them, see them weekly, reflect on them, and be held to them as our team code',
               'To reach our goals, we need everyone moving in the same direction',
             ],
           },
@@ -247,21 +246,25 @@ export const slides: Slide[] = [
         title: 'Collective Dominance',
         body: "We teach Total Soccer — every player masters game intelligence and positional roles. We don't rely on one player to dribble through everyone; we rely on tactical discipline and passing combinations to out-think and out-move opponents. Our competitive edge is a team that functions as a single, unstoppable unit.",
         iconImage: 'assets/icons/icon-collective.png',
+        tags: ['TOTAL SOCCER', 'TEAM OVER STARS', 'TACTICAL IQ'],
       },
       {
-        title: 'Mastery over the Scoreboard',
+        title: 'Built for the Next Level',
         body: "We're building long-term talent for the higher leagues. We define our standard by mastery of the process — effort, focus, and technical precision. The scoreboard is a byproduct of high-intensity training; by focusing on mastery today, we ensure our players don't just win at U11.",
         iconImage: 'assets/icons/icon-mastery.png',
+        tags: ['LONG-TERM DEVELOPMENT', 'PROCESS OVER RESULTS', 'NEXT LEAGUE READY'],
       },
       {
         title: 'High-Performance, Child-Centered Culture',
         body: "The enjoyment of the game is the primary driver of improvement — you will not get better at a sport you don't love. Our love for the game is rooted in the pursuit of excellence. We provide a psychologically safe environment where players are encouraged to take risks, but we hold every player to a high standard of respect, discipline, and effort.",
         iconImage: 'assets/icons/icon-culture.png',
+        tags: ['LOVE THE GAME', 'SAFE TO FAIL', 'HIGH STANDARDS'],
       },
       {
         title: 'Competitive Growth for the Whole Roster',
         body: 'Players who meet our work-rate and focus requirements are guaranteed at least half of every game. We build a deep, resilient roster rather than "hiding" players to protect a result. This creates a more competitive environment for the full match duration and ensures every player is battle-tested for high-stakes moments.',
         iconImage: 'assets/icons/icon-growth.png',
+        tags: ['HALF-GAME MINIMUM', 'DEEP ROSTER', 'EVERY PLAYER COUNTS'],
       },
     ],
   },
