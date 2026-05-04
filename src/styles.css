@@ -828,7 +828,7 @@
 
     .slide-tool-img {
       width: 100%;
-      height: 21vh;
+      height: 16vh;
       object-position: top center;
       flex-shrink: 0;
       background: rgba(255,255,255,0.03);

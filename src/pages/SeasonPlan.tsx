@@ -81,6 +81,21 @@ function BulletList({ items }: { items: BulletItem[] }) {
             </Group>
           )
         }
+        if ('heading' in item) {
+          return (
+            <Box key={i}>
+              <Group gap="sm" align="flex-start" wrap="nowrap">
+                {DOT}
+                <Text style={{ fontSize: 'clamp(16px, 1.7vw, 21px)', lineHeight: 1.4, color: 'white', fontFamily: SERIF }}>
+                  {item.heading}
+                </Text>
+              </Group>
+              <Text style={{ paddingLeft: 20, marginTop: 4, fontSize: 'clamp(13px, 1.35vw, 16px)', lineHeight: 1.75, color: 'rgba(255,255,255,0.7)' }}>
+                {item.body}
+              </Text>
+            </Box>
+          )
+        }
         return (
           <Box key={i}>
             <Group gap="sm" align="flex-start" wrap="nowrap">
@@ -219,6 +234,7 @@ function RenderDivider({ slide }: { slide: DividerSlide }) {
 const GOLD = 'rgba(212,175,80,'
 const AMBER = 'rgba(230,155,50,'
 const BLUE = 'rgba(80,140,255,'
+const GREEN = 'rgba(60,185,110,'
 
 function SlideKicker({ text, href }: { text: string; href?: string }) {
   const quote = (
@@ -813,7 +829,6 @@ function RenderQuoteCollage({ slide }: { slide: QuoteCollageSlide }) {
               style={{
                 fontFamily: SERIF,
                 fontSize: 'clamp(18px, 2.2vw, 26px)',
-                fontStyle: 'italic',
                 color: 'rgba(255,255,255,0.62)',
                 lineHeight: 1.6,
                 maxWidth: 820,
@@ -996,7 +1011,7 @@ function RenderImage({ slide }: { slide: ImageSlide }) {
 function RenderFeatures({ slide }: { slide: FeaturesSlide }) {
   const cols = slide.cols ?? 3
   return (
-    <Box style={{ width: '100%' }}>
+    <Box style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Box style={{ marginBottom: 28 }}>
         <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 10 }}>
           {slide.title}
@@ -1100,6 +1115,24 @@ function RenderFeatures({ slide }: { slide: FeaturesSlide }) {
           </Text>
         </Box>
       )}
+      {slide.note && (
+        <Box
+          style={{
+            marginTop: 'auto',
+            padding: '20px 24px',
+            background: 'rgba(80, 160, 255, 0.08)',
+            border: '1px solid rgba(80, 160, 255, 0.22)',
+            borderTop: '2px solid rgba(80, 160, 255, 0.55)',
+          }}
+        >
+          <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(120, 190, 255, 0.75)', marginBottom: 10 }}>
+            {slide.note.label}
+          </Text>
+          <Text style={{ fontSize: 'clamp(13px, 1.4vw, 17px)', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7 }}>
+            {slide.note.text}
+          </Text>
+        </Box>
+      )}
     </Box>
   )
 }
@@ -1190,7 +1223,7 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
   return (
     <Box style={{ width: '100%' }}>
       {/* Hero: eyebrow + question + image */}
-      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl" style={{ marginBottom: 32 }}>
+      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl" style={{ marginBottom: 18 }}>
         <Box>
           <Text
             style={{
@@ -1199,7 +1232,7 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.4)',
-              marginBottom: 20,
+              marginBottom: 10,
             }}
           >
             {slide.eyebrow}
@@ -1209,25 +1242,25 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
             style={{
               fontFamily: SERIF,
               fontWeight: 400,
-              fontSize: 'clamp(24px, 2.8vw, 40px)',
+              fontSize: 'clamp(20px, 2.2vw, 32px)',
               fontStyle: 'italic',
               color: 'white',
               lineHeight: 1.25,
-              marginBottom: 20,
+              marginBottom: 10,
             }}
           >
             "{slide.question}"
           </Title>
-          <Box style={{ width: 64, height: 1, background: 'rgba(255,255,255,0.15)', marginBottom: 18 }} />
+          <Box style={{ width: 64, height: 1, background: 'rgba(255,255,255,0.15)', marginBottom: 10 }} />
           <Box>
             {(Array.isArray(slide.intro) ? slide.intro : [slide.intro]).map((line, i, arr) => (
               <Text
                 key={i}
                 style={{
-                  fontSize: 'clamp(14px, 1.5vw, 18px)',
+                  fontSize: 'clamp(13px, 1.35vw, 16px)',
                   color: 'rgba(255,255,255,0.68)',
-                  lineHeight: 1.75,
-                  marginBottom: i < arr.length - 1 ? 12 : 0,
+                  lineHeight: 1.6,
+                  marginBottom: i < arr.length - 1 ? 8 : 0,
                 }}
               >
                 {line}
@@ -1236,40 +1269,42 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
           </Box>
         </Box>
         <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img
-            src={`${base}${slide.image}`}
-            alt=""
-            style={{ width: '72%', height: 'auto', maxHeight: '26vh', objectFit: 'contain', opacity: 0.92 }}
-          />
+          {slide.imageLink ? (
+            <Box component="a" href={slide.imageLink} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+              <img src={`${base}${slide.image}`} alt="" style={{ width: '72%', height: 'auto', maxHeight: '26vh', objectFit: 'contain', opacity: 0.92, display: 'block' }} />
+            </Box>
+          ) : (
+            <img src={`${base}${slide.image}`} alt="" style={{ width: '72%', height: 'auto', maxHeight: '26vh', objectFit: 'contain', opacity: 0.92 }} />
+          )}
         </Box>
       </SimpleGrid>
 
       {/* Feature cards */}
-      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md" style={{ marginBottom: 24 }}>
+      <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md" style={{ marginBottom: 14 }}>
         {slide.points.map((point) => (
           <Box
             key={point.title}
             style={{
               background: 'rgba(255,255,255,0.025)',
               border: '1px solid rgba(255,255,255,0.09)',
-              padding: '18px 20px 22px',
+              padding: '12px 16px 16px',
             }}
           >
             <Box
               style={{
-                width: 40, height: 40,
+                width: 34, height: 34,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 background: 'rgba(255,255,255,0.04)',
                 border: '1px solid rgba(255,255,255,0.09)',
-                marginBottom: 14,
+                marginBottom: 10,
               }}
             >
-              <point.icon size={20} stroke={1.4} color={`${GOLD}0.85)`} />
+              <point.icon size={18} stroke={1.4} color={`${GOLD}0.85)`} />
             </Box>
-            <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 21px)', color: 'white', lineHeight: 1.25, marginBottom: 8 }}>
+            <Text style={{ fontFamily: SERIF, fontSize: 'clamp(14px, 1.5vw, 18px)', color: 'white', lineHeight: 1.25, marginBottom: 6 }}>
               {point.title}
             </Text>
-            <Text style={{ fontSize: 'clamp(12px, 1.15vw, 15px)', color: 'rgba(255,255,255,0.62)', lineHeight: 1.65 }}>
+            <Text style={{ fontSize: 'clamp(11px, 1.05vw, 13px)', color: 'rgba(255,255,255,0.62)', lineHeight: 1.6 }}>
               {point.description}
             </Text>
           </Box>
@@ -1279,7 +1314,7 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
       {/* Pathway callout */}
       <Box
         style={{
-          padding: '22px 28px 26px',
+          padding: '14px 22px 16px',
           background: `linear-gradient(135deg, ${GOLD}0.07) 0%, rgba(255,255,255,0.04) 50%, ${GOLD}0.05) 100%)`,
           border: `1px solid ${GOLD}0.2)`,
           borderTop: `2px solid ${GOLD}0.7)`,
@@ -1288,16 +1323,28 @@ function RenderHeroQuestion({ slide }: { slide: HeroQuestionSlide }) {
         <Text
           style={{
             fontFamily: MONO, fontSize: 9, letterSpacing: '4px',
-            textTransform: 'uppercase', color: `${GOLD}0.6)`, marginBottom: 10,
+            textTransform: 'uppercase', color: `${GOLD}0.6)`, marginBottom: 8,
           }}
         >
           The Pathway
         </Text>
-        <Text style={{ fontFamily: SERIF, fontSize: 'clamp(17px, 1.9vw, 23px)', color: 'white', lineHeight: 1.3, marginBottom: 10 }}>
+        <Text style={{ fontFamily: SERIF, fontSize: 'clamp(15px, 1.6vw, 20px)', color: 'white', lineHeight: 1.3, marginBottom: 8 }}>
           {slide.pathway.heading}
         </Text>
-        <Text style={{ fontSize: 'clamp(13px, 1.3vw, 16px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.7 }}>
-          {slide.pathway.body}
+        <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.65 }}>
+          {slide.pathway.link
+            ? slide.pathway.body.split(slide.pathway.link.text).map((part, i, arr) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < arr.length - 1 && (
+                    <Box component="a" href={slide.pathway.link!.url} target="_blank" rel="noopener noreferrer"
+                      style={{ color: `${GOLD}0.9)`, textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                      {slide.pathway.link!.text}
+                    </Box>
+                  )}
+                </React.Fragment>
+              ))
+            : slide.pathway.body}
         </Text>
       </Box>
     </Box>
@@ -1326,35 +1373,36 @@ function RenderInterstitial({ slide }: { slide: InterstitialSlide }) {
 }
 
 function RenderJourneyReflection({ slide }: { slide: JourneyReflectionSlide }) {
-  function tierAccent(color: 'gold' | 'amber' | 'blue') {
+  function tierAccent(color: 'gold' | 'amber' | 'blue' | 'green') {
     if (color === 'gold') return GOLD
     if (color === 'amber') return AMBER
+    if (color === 'green') return GREEN
     return BLUE
   }
 
   return (
     <Box style={{ width: '100%' }}>
       {/* Hero question */}
-      <Box style={{ marginBottom: 30 }}>
-        <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.38)', marginBottom: 16 }}>
+      <Box style={{ marginBottom: 18 }}>
+        <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.38)', marginBottom: 10 }}>
           {slide.eyebrow}
         </Text>
         <Title
           order={2}
-          style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 'clamp(24px, 3vw, 44px)', fontStyle: 'italic', color: 'white', lineHeight: 1.2, marginBottom: 16 }}
+          style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 'clamp(20px, 2.4vw, 34px)', fontStyle: 'italic', color: 'white', lineHeight: 1.2, marginBottom: 10 }}
         >
           "{slide.question}"
         </Title>
-        <Box style={{ width: 64, height: 1, background: 'rgba(255,255,255,0.15)', marginBottom: 16 }} />
+        <Box style={{ width: 64, height: 1, background: 'rgba(255,255,255,0.15)', marginBottom: 10 }} />
         {slide.intro.map((line, i) => (
-          <Text key={i} style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, marginBottom: i < slide.intro.length - 1 ? 10 : 0 }}>
+          <Text key={i} style={{ fontSize: 'clamp(13px, 1.35vw, 16px)', color: 'rgba(255,255,255,0.65)', lineHeight: 1.6, marginBottom: i < slide.intro.length - 1 ? 6 : 0 }}>
             {line}
           </Text>
         ))}
       </Box>
 
       {/* Three tier cards */}
-      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="md" style={{ marginBottom: 22 }}>
+      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="md" style={{ marginBottom: 14 }}>
         {slide.tiers.map((tier) => {
           const a = tierAccent(tier.tagColor)
           return (
@@ -1364,27 +1412,27 @@ function RenderJourneyReflection({ slide }: { slide: JourneyReflectionSlide }) {
                 background: 'rgba(255,255,255,0.025)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 borderTop: `2px solid ${a}0.7)`,
-                padding: '18px 20px 22px',
+                padding: '12px 16px 16px',
                 display: 'flex',
                 flexDirection: 'column',
               }}
             >
-              <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: `${a}0.6)`, marginBottom: 7 }}>
+              <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: `${a}0.6)`, marginBottom: 5 }}>
                 {tier.tier}
               </Text>
-              <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.8vw, 22px)', color: 'white', lineHeight: 1.2, marginBottom: 12 }}>
+              <Text style={{ fontFamily: SERIF, fontSize: 'clamp(14px, 1.5vw, 18px)', color: 'white', lineHeight: 1.2, marginBottom: 8 }}>
                 {tier.sublabel}
               </Text>
-              <Box style={{ display: 'inline-block', padding: '3px 10px', background: `${a}0.1)`, border: `1px solid ${a}0.28)`, marginBottom: 14, alignSelf: 'flex-start' }}>
+              <Box style={{ display: 'inline-block', padding: '2px 8px', background: `${a}0.1)`, border: `1px solid ${a}0.28)`, marginBottom: 10, alignSelf: 'flex-start' }}>
                 <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: `${a}0.9)` }}>
                   {tier.tag}
                 </Text>
               </Box>
-              <Text style={{ fontSize: 'clamp(12px, 1.2vw, 15px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.65, marginBottom: 14, flex: 1 }}>
+              <Text style={{ fontSize: 'clamp(11px, 1.05vw, 13px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.6, marginBottom: 10, flex: 1 }}>
                 {tier.description}
               </Text>
-              <Box style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 12 }}>
-                <Text style={{ fontSize: 'clamp(11px, 1.1vw, 14px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, fontStyle: 'italic' }}>
+              <Box style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 8 }}>
+                <Text style={{ fontSize: 'clamp(10px, 0.95vw, 12px)', color: 'rgba(255,255,255,0.45)', lineHeight: 1.55, fontStyle: 'italic' }}>
                   {tier.honest}
                 </Text>
               </Box>
@@ -1394,8 +1442,8 @@ function RenderJourneyReflection({ slide }: { slide: JourneyReflectionSlide }) {
       </SimpleGrid>
 
       {/* Personal stories */}
-      <Box style={{ marginBottom: 20 }}>
-        <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: 12 }}>
+      <Box style={{ marginBottom: 14 }}>
+        <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '4px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: 8 }}>
           {slide.storiesLabel}
         </Text>
         <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="sm">
@@ -1403,19 +1451,19 @@ function RenderJourneyReflection({ slide }: { slide: JourneyReflectionSlide }) {
             <Box
               key={i}
               style={{
-                padding: '14px 16px 16px',
+                padding: '10px 14px 12px',
                 background: 'rgba(255,255,255,0.02)',
                 border: '1px solid rgba(255,255,255,0.07)',
                 borderLeft: '2px solid rgba(255,255,255,0.2)',
               }}
             >
-              <Text style={{ fontFamily: SERIF, fontSize: 'clamp(15px, 1.5vw, 18px)', color: 'white', lineHeight: 1.2, marginBottom: 4 }}>
+              <Text style={{ fontFamily: SERIF, fontSize: 'clamp(13px, 1.3vw, 16px)', color: 'white', lineHeight: 1.2, marginBottom: 3 }}>
                 {s.person}
               </Text>
-              <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: 10 }}>
+              <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.32)', marginBottom: 6 }}>
                 {s.role}
               </Text>
-              <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.65, fontStyle: 'italic' }}>
+              <Text style={{ fontSize: 'clamp(11px, 1.05vw, 13px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, fontStyle: 'italic' }}>
                 {s.story}
               </Text>
             </Box>
@@ -1426,21 +1474,23 @@ function RenderJourneyReflection({ slide }: { slide: JourneyReflectionSlide }) {
       {/* Promise callout */}
       <Box
         style={{
-          padding: '20px 26px 24px',
+          padding: '14px 22px 16px',
           background: `linear-gradient(135deg, ${GOLD}0.07) 0%, rgba(255,255,255,0.04) 50%, ${GOLD}0.05) 100%)`,
           border: `1px solid ${GOLD}0.2)`,
           borderTop: `2px solid ${GOLD}0.7)`,
         }}
       >
-        <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: `${GOLD}0.6)`, marginBottom: 10 }}>
+        <Text style={{ fontFamily: MONO, fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: `${GOLD}0.6)`, marginBottom: 8 }}>
           {slide.promise.label}
         </Text>
-        <Text style={{ fontFamily: SERIF, fontSize: 'clamp(17px, 1.9vw, 23px)', color: 'white', lineHeight: 1.3, marginBottom: 10 }}>
+        <Text style={{ fontFamily: SERIF, fontSize: 'clamp(15px, 1.6vw, 20px)', color: 'white', lineHeight: 1.3 }}>
           {slide.promise.heading}
         </Text>
-        <Text style={{ fontSize: 'clamp(13px, 1.3vw, 16px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.7 }}>
-          {slide.promise.body}
-        </Text>
+        {slide.promise.body && (
+          <Text style={{ fontSize: 'clamp(13px, 1.3vw, 16px)', color: 'rgba(255,255,255,0.72)', lineHeight: 1.7, marginTop: 8 }}>
+            {slide.promise.body}
+          </Text>
+        )}
       </Box>
     </Box>
   )

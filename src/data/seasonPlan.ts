@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type IconComponent = React.ComponentType<any>
 
-export type BulletItem = string | { label: string; subitems: string[] }
+export type BulletItem = string | { label: string; subitems: string[] } | { heading: string; body: string }
 
 export interface Column {
   heading: string
@@ -69,6 +69,7 @@ export type FeaturesSlide = {
   cols?: 2 | 3
   sections: FeaturesSection[]
   quote?: { text: string; attribution: string; context?: string }
+  note?: { label: string; text: string }
 }
 
 export type HeroQuestionPoint = { icon: IconComponent; title: string; description: string }
@@ -78,15 +79,16 @@ export type HeroQuestionSlide = {
   question: string
   intro: string | string[]
   image: string
+  imageLink?: string
   points: HeroQuestionPoint[]
-  pathway: { heading: string; body: string }
+  pathway: { heading: string; body: string; link?: { text: string; url: string } }
 }
 
 export type TierCard = {
   tier: string
   sublabel: string
   tag: string
-  tagColor: 'gold' | 'amber' | 'blue'
+  tagColor: 'gold' | 'amber' | 'blue' | 'green'
   description: string
   honest: string
 }
@@ -350,8 +352,18 @@ export const slides: Slide[] = [
           },
         ],
       },
+    ],
+  },
+
+  // ── 16 ─────────────────────────────────────────────────────────
+  {
+    id: 'dev-approach-u11',
+    type: 'features',
+    title: 'Our Approach',
+    subtitle: 'Why U11 Is the Right Age',
+    cols: 3,
+    sections: [
       {
-        label: 'Why U11 Is the Right Age',
         items: [
           {
             icon: IconStar,
@@ -374,6 +386,10 @@ export const slides: Slide[] = [
     quote: {
       text: 'Driving a car is best learnt when you sit behind the wheel and join the traffic. You must play soccer in order to learn the techniques.',
       attribution: 'Royal Dutch Football Association (KNVB)',
+    },
+    note: {
+      label: 'ONE LAST NOTE',
+      text: "Great coaches disagree about technique-first vs. game-first, and we respect both views. We've made our choice based on what we've seen work for U11 players — and on the same approach the world's most successful youth systems use. But ultimately, we just want your son to fall in love with this game and keep getting better.",
     },
   },
 
@@ -420,15 +436,11 @@ export const slides: Slide[] = [
     title: 'Love of the Game',
     image: 'assets/images/action/teach-teaching-highlights.png',
     bullets: [
-      'We study highlights from our own matches and from the pros. The clips become a shared vocabulary for what we\'re trying to do on Saturday — and a window into a level of the game that inspires kids to keep working.',
+      { heading: 'Highlights', body: 'We study clips from our own matches and from the pros. They become a shared vocabulary for what we\'re trying to do on Saturday — and a window into a level of the game that inspires kids to keep working.' },
       'At U11, our number one priority is making sure these players love the game. Tactics, technique, and tools all matter — but they only matter if a kid wants to put in the work.',
       'That\'s where every single thing on this page begins.',
     ],
     quote: 'Commitment starts with love. At U11, our number one priority is making sure these players love the game — because the rest only happens when they want to put in the work.',
-    note: {
-      label: 'ONE LAST NOTE',
-      text: "Great coaches disagree about technique-first vs. game-first, and we respect both views. We've made our choice based on what we've seen work for U11 players — and on the same approach the world's most successful youth systems use. But ultimately, we just want your son to fall in love with this game and keep getting better.",
-    },
   },
 
   // ── 18a ────────────────────────────────────────────────────────
@@ -488,13 +500,13 @@ export const slides: Slide[] = [
     id: 'advanced-leagues',
     type: 'hero-question',
     eyebrow: 'Advanced Leagues',
-    question: "Aren't I limiting my future options if I play for Synergy?",
+    question: "Does playing for Synergy limit my future options?",
     intro: [
-      'This is one of the most common questions we hear — and it deserves a real answer.',
-      'The short version is no.',
+      'One of the most common questions we hear — and the short answer is no.',
       'But the more useful question is: what actually develops a player at this age?',
     ],
     image: 'assets/images/season-plan/synergy-phx-premier-mls-next.png',
+    imageLink: 'https://www.instagram.com/p/DXYIf7zDLHi/',
     points: [
       {
         icon: IconHistory,
@@ -519,7 +531,8 @@ export const slides: Slide[] = [
     ],
     pathway: {
       heading: 'When the time is right, the path is clear.',
-      body: "Synergy has a direct relationship with Phoenix Premier, which runs one of the two youth pathways we genuinely believe matter: MLS Next. Boys from our program are already playing for the U13 Phoenix Premier MLS Next team. We're not closing a door — we're saying there's real value in not rushing through it before a player is ready. Our philosophy is to build the foundation through U13. By then, the right next step becomes obvious, and we'll say so plainly.",
+      body: "Synergy has a direct relationship with Phoenix Premier's MLS Next program — boys from our team are already on their U13 roster. We're not closing a door. We're saying there's real value in building the right foundation first. By U13, the next step becomes obvious, and we'll say so plainly.",
+      link: { text: 'Phoenix Premier', url: 'https://www.phoenixpremierfc.com/' },
     },
   },
 
@@ -612,7 +625,7 @@ export const slides: Slide[] = [
         tier: 'Elite',
         sublabel: 'MLS Next · ECNL',
         tag: 'Worth chasing if the drive is genuine',
-        tagColor: 'gold',
+        tagColor: 'green',
         description: "The only two tiers with a clear pathway to college recruitment and the professional game. ~73% of D1 men's recruits come from here. If the drive is real and the player is ready, this is the destination.",
         honest: "Getting there requires real sacrifice — heavy travel, high fees, an intensely competitive environment. When it's the right fit, it's worth every bit of it.",
       },
@@ -653,8 +666,8 @@ export const slides: Slide[] = [
     ],
     promise: {
       label: 'Our Commitment to You',
-      heading: "If Charlie's path changes, you'll know well in advance.",
-      body: "If we see the signs — dominant performances, outgrowing the competition, the kind of internal drive that can't be coached — we'll say so plainly. You won't need to wonder. We won't string you along, and we won't be slow to say it. As parents, chasing the elite path is our last option for Charlie. It has to come from him — his hunger, his love, his choice — not as a default next step because he's good at U11.",
+      heading: "If Charlie's path changes, you'll know well in advance. Our deeper goal is a lifelong love of the game.",
+      body: '',
     },
   },
 ]
