@@ -128,7 +128,7 @@ export const slides: Slide[] = [
     id: 'title',
     type: 'title',
     title: 'U11 Boys Season Plan',
-    subtitle: '2025 – 26',
+    subtitle: '2026 – 27',
   },
 
   // ── 2 ──────────────────────────────────────────────────────────
@@ -277,7 +277,7 @@ export const slides: Slide[] = [
     type: 'principles-table',
     title: 'Principles of Play — Players',
     rows: [
-      { icon: IconBallFootball,     name: '1, 2 or 3 Touch Maximum',       description: 'Minimizing touches improves speed of play. (Longer term goal, not a current requirement)' },
+      { icon: IconBallFootball,     name: '1, 2 or 3 Touch Maximum',       description: 'Minimizing touches improves speed of play. (Longer-term goal, not a current requirement)' },
       { icon: IconCheck,            name: 'Keep the Game Simple',           description: "Don't force situations, over-dribble, or be careless with the ball." },
       { icon: IconArrowNarrowDown,  name: 'Keep the Ball on the Ground',    description: 'Easier to control and move efficiently. (Exceptions apply)' },
       { icon: IconTarget,           name: 'Accuracy and Quality of the Pass', description: 'Firm, accurate, proper weight.' },
@@ -286,7 +286,7 @@ export const slides: Slide[] = [
       { icon: IconShield,           name: '1v1 Situations',                 description: 'Determined to regain control in defense. Keep it simple in attack — touch to the side, at speed.' },
       { icon: IconArrowsExchange,   name: 'Individual Transition',          description: 'React quickly when possession changes.' },
       { icon: IconBolt,             name: 'Shooting',                       description: 'Always keep an eye on the goal. All players are encouraged to shoot.' },
-      { icon: IconRocket,           name: 'Take Risks',                     description: 'Mistakes are part of learning. Encouraged to take risks (especially in training) to increase speed of play.' },
+      { icon: IconRocket,           name: 'Take Risks',                     description: 'Mistakes are part of learning. Players are encouraged to take risks (especially in training) to increase speed of play.' },
     ],
     coachNote: "These principles aren't just tactics — they define how we train and compete every week. If they don't align with how you or your son approach the game, that's okay. It just means we may not be the right fit for each other, and being upfront about that now is better for everyone.",
   },
@@ -401,7 +401,7 @@ export const slides: Slide[] = [
     items: [
       {
         name: 'Trace',
-        description: "After games and tournaments, the coach saves a highlight reel for each player calling out their wins and the next thing to work on. Tied directly to your son's IDP so the feedback he gets on Saturday becomes the focus of his next training week.",
+        description: "After games and tournaments, the coach saves a highlight reel for each player calling out their wins and the next thing to work on. It's tied directly to your son's IDP so the feedback he gets on Saturday becomes the focus of his next training week.",
         image: 'assets/images/dev-tools/trace.png',
         imageFit: 'contain',
         link: 'https://traceup.com/',
@@ -478,7 +478,7 @@ export const slides: Slide[] = [
     coachNotes: [
       {
         heading: 'Psychological — Our Focus',
-        note: 'Attitude and Effort are our baselines — the two things every player is held to regardless of the scoreboard. This season the areas we expect to grow into are Commitment and Self-Motivation: the internal drive to keep working, keep showing up, and keep improving when no one is pushing you to.',
+        note: 'Attitude and Effort are our baselines — the two things every player is held to regardless of the scoreboard. This season, the areas we expect to grow into are Commitment and Self-Motivation: the internal drive to keep working, keep showing up, and keep improving when no one is pushing you.',
       },
       {
         heading: 'Physical — Our Adjustments',
@@ -516,7 +516,7 @@ export const slides: Slide[] = [
       {
         icon: IconBallFootball,
         title: 'Playing time is the unit of development',
-        description: "A player earning meaningful minutes on a well-coached team — making decisions, making mistakes, solving real problems — develops faster than one sitting a bench on a higher-division roster. The rep count matters more than the label on the schedule.",
+        description: "A player earning meaningful minutes on a well-coached team — making decisions, making mistakes, solving real problems — develops faster than one riding the bench on a higher-division roster. The rep count matters more than the label on the schedule.",
       },
       {
         icon: IconUsers,
@@ -588,7 +588,7 @@ export const slides: Slide[] = [
         {
           name: 'ECNL Regional',
           tag: 'REGIONAL',
-          description: 'The regional division of ECNL. Below the national conference level but maintaining the ECNL training standards and brand. The most common entry point into the ECNL structure.',
+          description: 'The regional division of ECNL. It sits below the national conference level but maintains the ECNL training standards and brand. The most common entry point into the ECNL structure.',
         },
       ],
       callout: {
@@ -615,7 +615,7 @@ export const slides: Slide[] = [
     id: 'personal-take',
     type: 'journey-reflection',
     eyebrow: 'Beyond U11 — A Personal Take',
-    question: "What do you want your son's Soccer Journey to look like?",
+    question: "What do you want your son's soccer journey to look like?",
     intro: [
       'For players with real internal drive and a love for the game, aiming for MLS Next and ECNL is a fantastic goal. We celebrate and support that ambition.',
       "But every family's situation is unique — and there's nothing wrong with the middle tier. It's just not for the Montone family.",
@@ -635,7 +635,7 @@ export const slides: Slide[] = [
         tag: "We'd think hard before committing",
         tagColor: 'amber',
         description: "The leagues between local club and MLS Next/ECNL cost nearly as much and demand just as much travel — without the same developmental or recruitment payoff. 5–10 travel weekends, several requiring flights.",
-        honest: "Joining win-now environments before a player is ready often leads to burnout and anxiety. It takes the joy out of the sport during the most crucial learning years. All sports becomes play-to-win — and that's a dangerous place to be at U11.",
+        honest: "Joining win-now environments before a player is ready often leads to burnout and anxiety. It takes the joy out of the sport during the most crucial learning years. All sports become play-to-win — and that's a dangerous place to be at U11.",
       },
       {
         tier: 'Foundation',
