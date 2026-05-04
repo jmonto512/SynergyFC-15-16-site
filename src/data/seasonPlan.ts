@@ -13,6 +13,7 @@ export interface Column {
 export interface GridItem {
   title: string
   body: string
+  iconImage?: string
 }
 
 export interface ToolItem {
@@ -20,20 +21,85 @@ export interface ToolItem {
   description: string
   image: string
   imageFit?: 'contain' | 'cover'
+  link?: string
 }
 
-import { IconClipboard, IconUsers, IconTrophy } from '@tabler/icons-react'
+import {
+  IconClipboard, IconUsers, IconTrophy, IconHistory, IconRocket,
+  IconBallFootball, IconCheck, IconArrowNarrowDown, IconTarget,
+  IconHandStop, IconEye, IconShield, IconArrowsExchange, IconBolt,
+  IconHash, IconArrowsLeftRight, IconTriangle, IconArrowsMove,
+  IconCrosshair, IconRefresh, IconCompass, IconBulb,
+  IconBrain, IconAffiliate, IconStar, IconMap, IconPuzzle,
+} from '@tabler/icons-react'
+
+export type PrinciplesTableRow = { icon: IconComponent; name: string; description: string }
 
 export type DividerSlide = { type: 'divider'; title: string; subtitle?: string }
 export type TitleSlide = { type: 'title'; title: string; subtitle: string }
-export type TwoColumnSlide = { type: 'two-column'; title: string; columns: Column[]; kicker?: string }
-export type GridSlide = { type: 'grid'; title: string; cols: 2 | 3; items: GridItem[] }
-export type TextSlide = { type: 'text'; title: string; bullets: BulletItem[]; quote?: string }
+export type TwoColumnSlide = { type: 'two-column'; title: string; columns: Column[]; kicker?: string; kickerHref?: string; kickerImage?: string; kickerAttribution?: string }
+export type GridSlide = { type: 'grid'; title: string; subtitle?: string; cols: 2 | 3; items: GridItem[] }
+export type TextSlide = { type: 'text'; title: string; bullets: BulletItem[]; quote?: string; image?: string; note?: { label: string; text: string } }
 export type ProblemSolutionSlide = { type: 'problem-solution'; title: string; problem: Column; solution: Column }
 export type ToolsSlide = { type: 'tools'; title: string; items: ToolItem[] }
-export type QuoteCollageSlide = { type: 'quote-collage'; title: string; quotes: string[] }
-export type ImageSlide = { type: 'image'; title: string; image: string; caption?: string }
+export type QuoteCollageSlide = { type: 'quote-collage'; title: string; eyebrow?: string; intro?: string | string[]; quotes: string[] }
+export type LeagueItem = { name: string; tag?: string; description: string; link?: string }
+export type ImageSlide = {
+  type: 'image'
+  title: string
+  image: string
+  caption?: string
+  fade?: boolean
+  sidebar?: {
+    items: LeagueItem[]
+    callout?: { label: string; heading: string; body: string; link?: string }
+  }
+}
+export type DualImageSlide = { type: 'dual-image'; title: string; subtitle?: string; images: Array<{ src: string; caption?: string; icon?: IconComponent }>; coachNotes?: Array<{ heading: string; note: string }>; quote?: { text: string; attribution?: string } }
 export type InterstitialSlide = { type: 'interstitial'; lines: string[] }
+export type PrinciplesTableSlide = { type: 'principles-table'; title: string; rows: PrinciplesTableRow[]; coachNote?: string }
+export type FeatureItem = { icon: IconComponent; title: string; description: string; note?: string; link?: string; linkLabel?: string }
+export type FeaturesSection = { label?: string; items: FeatureItem[] }
+export type FeaturesSlide = {
+  type: 'features'
+  title: string
+  subtitle?: string
+  hook?: string
+  cols?: 2 | 3
+  sections: FeaturesSection[]
+  quote?: { text: string; attribution: string; context?: string }
+}
+
+export type HeroQuestionPoint = { icon: IconComponent; title: string; description: string }
+export type HeroQuestionSlide = {
+  type: 'hero-question'
+  eyebrow: string
+  question: string
+  intro: string | string[]
+  image: string
+  points: HeroQuestionPoint[]
+  pathway: { heading: string; body: string }
+}
+
+export type TierCard = {
+  tier: string
+  sublabel: string
+  tag: string
+  tagColor: 'gold' | 'amber' | 'blue'
+  description: string
+  honest: string
+}
+export type CoachStory = { person: string; role: string; story: string }
+export type JourneyReflectionSlide = {
+  type: 'journey-reflection'
+  eyebrow: string
+  question: string
+  intro: string[]
+  tiers: TierCard[]
+  storiesLabel: string
+  stories: CoachStory[]
+  promise: { label: string; heading: string; body: string }
+}
 
 export type Slide = { id: string } & (
   | DividerSlide
@@ -45,7 +111,12 @@ export type Slide = { id: string } & (
   | ToolsSlide
   | QuoteCollageSlide
   | ImageSlide
+  | DualImageSlide
   | InterstitialSlide
+  | PrinciplesTableSlide
+  | FeaturesSlide
+  | HeroQuestionSlide
+  | JourneyReflectionSlide
 )
 
 export const slides: Slide[] = [
@@ -81,7 +152,7 @@ export const slides: Slide[] = [
               'More individual attention with another coach on the field',
             ],
           },
-          'Synergy adding goalie training',
+          'Synergy is adding goalie training',
         ],
       },
       {
@@ -131,181 +202,108 @@ export const slides: Slide[] = [
     columns: [
       {
         heading: 'Last Season',
+        icon: IconHistory,
         items: [
-          'Significant learning experience. Reaching "Silver" was an achievement but highlighted gaps in cohesion and technical consistency.',
-          'Knew the age-group split was coming, chose to finish without major changes — those changes are now the priority.',
+          'A significant learning experience — while reaching "Silver" was an achievement, it highlighted specific gaps in our cohesion and technical consistency.',
+          'Knowing the age-group split was coming, I chose to finish without making the major changes necessary to fix those issues — those changes are now my priority.',
         ],
       },
       {
         heading: 'Next Season',
+        icon: IconRocket,
         items: [
-          'Excited to start fresh with this group despite losing older players',
-          'Tighter age range = more effective, targeted coaching',
-          '"I believe this specific group of players has the \'team-first\' attitude required to be successful in our system."',
+          "While I'm sad to see the last group go, don't take that as disappointment — I'm even more excited to start with this group.",
+          {
+            label: 'Tighter age range = more effective, targeted coaching',
+            subitems: ['Juggling 3 grades of players wasn\'t easy'],
+          },
+          "I believe this group has the 'team-first' attitude required to be successful in our system.",
+          {
+            label: "My coaching philosophy hasn't changed — but it wasn't shared by some players and parents last season",
+            subitems: [
+              "That's my fault — I need to be much more direct about its importance this year",
+              'Please review our Core Values and Principles of Play',
+              'To reach our goals, we need everyone moving in the same direction',
+            ],
+          },
         ],
       },
     ],
-  },
-
-  // ── 8 ──────────────────────────────────────────────────────────
-  {
-    id: 'resetting-foundation-cont',
-    type: 'text',
-    title: 'Resetting Our Foundation — Next Season (cont.)',
-    bullets: [
-      'Coaching philosophy hasn\'t changed, but it wasn\'t shared by some players/parents last season',
-      '"That\'s my fault — I need to be much more direct about its importance this year."',
-      'Please review our Core Values and Principles of Play',
-      '"If they don\'t align with your own values, that is okay — it just means we aren\'t the right fit for the season ahead."',
-      '"To reach our goals, we need everyone moving in the same direction."',
-    ],
-    quote: 'We all see the duck',
+    kicker: 'We all see the duck',
+    kickerHref: 'https://youtube.com/shorts/alobMCIBl9s?si=NPoGfXIgIMb3T2UP',
+    kickerImage: 'assets/images/season-plan/duck-or-rabbit.png',
+    kickerAttribution: 'Mikel Arteta',
   },
 
   // ── 9 ──────────────────────────────────────────────────────────
   {
     id: 'core-values',
     type: 'grid',
-    title: 'Core Values',
+    title: 'What We Stand For',
+    subtitle: 'Our core values — the foundation everything else is built on.',
     cols: 2,
     items: [
       {
-        title: 'Team Identity over "Star Players"',
-        body: 'We teach "total soccer" where every player learns game intelligence, passing combinations, and how to attack/defend as a unit. We don\'t rely on one player to dribble through everyone.',
+        title: 'Collective Dominance',
+        body: "We teach Total Soccer — every player masters game intelligence and positional roles. We don't rely on one player to dribble through everyone; we rely on tactical discipline and passing combinations to out-think and out-move opponents. Our competitive edge is a team that functions as a single, unstoppable unit.",
+        iconImage: 'assets/icons/icon-collective.png',
       },
       {
         title: 'Mastery over the Scoreboard',
-        body: 'We are building long-term talent for the higher leagues. <FINISH LATER>',
+        body: "We're building long-term talent for the higher leagues. We define our standard by mastery of the process — effort, focus, and technical precision. The scoreboard is a byproduct of high-intensity training; by focusing on mastery today, we ensure our players don't just win at U11.",
+        iconImage: 'assets/icons/icon-mastery.png',
       },
       {
-        title: 'Child-Centered Culture',
-        body: 'The needs and enjoyment of the players are placed above the egos or self-interests of the adults. Number one priority: build your son\'s love for the game. You will not get better at a sport you don\'t love.',
+        title: 'High-Performance, Child-Centered Culture',
+        body: "The enjoyment of the game is the primary driver of improvement — you will not get better at a sport you don't love. Our love for the game is rooted in the pursuit of excellence. We provide a psychologically safe environment where players are encouraged to take risks, but we hold every player to a high standard of respect, discipline, and effort.",
+        iconImage: 'assets/icons/icon-culture.png',
       },
       {
-        title: 'Kids Develop by Playing',
-        body: 'Players who meet requirements are guaranteed to play at least half of every game. Dedicated to building the whole team, not just a few individuals. Requires shared patience for every player\'s journey.',
+        title: 'Competitive Growth for the Whole Roster',
+        body: 'Players who meet our work-rate and focus requirements are guaranteed at least half of every game. We build a deep, resilient roster rather than "hiding" players to protect a result. This creates a more competitive environment for the full match duration and ensures every player is battle-tested for high-stakes moments.',
+        iconImage: 'assets/icons/icon-growth.png',
       },
     ],
   },
 
   // ── 10 ─────────────────────────────────────────────────────────
   {
-    id: 'pop-players-1',
-    type: 'grid',
+    id: 'pop-players',
+    type: 'principles-table',
     title: 'Principles of Play — Players',
-    cols: 3,
-    items: [
-      {
-        title: '1, 2 or 3 Touch Maximum',
-        body: 'Minimizing touches improves speed of play. (Longer term goal, not a current requirement)',
-      },
-      {
-        title: 'Keep the Game Simple',
-        body: "Don't force situations, over-dribble, or be careless with the ball.",
-      },
-      {
-        title: 'Keep the Ball on the Ground',
-        body: 'Easier to control and move efficiently. (Exceptions apply)',
-      },
-      {
-        title: 'Accuracy and Quality of the Pass',
-        body: 'Firm, accurate, proper weight.',
-      },
-      {
-        title: 'First Touch',
-        body: 'Clean, controlled first touch without stopping the ball. Take the touch away from pressure and into free space.',
-      },
+    rows: [
+      { icon: IconBallFootball,     name: '1, 2 or 3 Touch Maximum',       description: 'Minimizing touches improves speed of play. (Longer term goal, not a current requirement)' },
+      { icon: IconCheck,            name: 'Keep the Game Simple',           description: "Don't force situations, over-dribble, or be careless with the ball." },
+      { icon: IconArrowNarrowDown,  name: 'Keep the Ball on the Ground',    description: 'Easier to control and move efficiently. (Exceptions apply)' },
+      { icon: IconTarget,           name: 'Accuracy and Quality of the Pass', description: 'Firm, accurate, proper weight.' },
+      { icon: IconHandStop,         name: 'First Touch',                    description: 'Clean, controlled first touch without stopping the ball. Take the touch away from pressure and into free space.' },
+      { icon: IconEye,              name: 'Perception and Awareness',       description: 'All players should constantly scan the field.' },
+      { icon: IconShield,           name: '1v1 Situations',                 description: 'Determined to regain control in defense. Keep it simple in attack — touch to the side, at speed.' },
+      { icon: IconArrowsExchange,   name: 'Individual Transition',          description: 'React quickly when possession changes.' },
+      { icon: IconBolt,             name: 'Shooting',                       description: 'Always keep an eye on the goal. All players are encouraged to shoot.' },
+      { icon: IconRocket,           name: 'Take Risks',                     description: 'Mistakes are part of learning. Encouraged to take risks (especially in training) to increase speed of play.' },
     ],
-  },
-
-  // ── 11 ─────────────────────────────────────────────────────────
-  {
-    id: 'pop-players-2',
-    type: 'grid',
-    title: 'Principles of Play — Players (cont.)',
-    cols: 3,
-    items: [
-      {
-        title: 'Perception and Awareness',
-        body: 'All players should constantly scan the field.',
-      },
-      {
-        title: '1v1 Situations',
-        body: 'Determined to regain control in defense. Keep it simple in attack — touch to the side, at speed.',
-      },
-      {
-        title: 'Individual Transition',
-        body: 'React quickly when possession changes.',
-      },
-      {
-        title: 'Shooting',
-        body: 'Always keep an eye on the goal. All players are encouraged to shoot.',
-      },
-      {
-        title: 'Take Risks',
-        body: 'Mistakes are part of learning. Encouraged to take risks (especially in training) to increase speed of play.',
-      },
-    ],
+    coachNote: "These principles aren't just tactics — they define how we train and compete every week. If they don't align with how you or your son approach the game, that's okay. It just means we may not be the right fit for each other, and being upfront about that now is better for everyone.",
   },
 
   // ── 12 ─────────────────────────────────────────────────────────
   {
-    id: 'pop-team-1',
-    type: 'grid',
+    id: 'pop-team',
+    type: 'principles-table',
     title: 'Principles of Play — Team',
-    cols: 3,
-    items: [
-      {
-        title: 'All Players Attack and All Players Defend',
-        body: 'All involved as a unit.',
-      },
-      {
-        title: 'Numerical Advantage',
-        body: 'Create numerical advantage in attack, avoid disadvantage in defense.',
-      },
-      {
-        title: 'Flow of the Ball',
-        body: 'Inside to outside and outside to inside. Wide = more secure, middle = more options.',
-      },
-      {
-        title: 'Triangle Principle and Passing Options',
-        body: 'Player with the ball must have at least two passing options.',
-      },
-      {
-        title: 'Speed of Play',
-        body: 'Quick ball movement creates 2v1 situations.',
-      },
+    rows: [
+      { icon: IconUsers,           name: 'All Players Attack and All Players Defend', description: 'All players must be involved in the game as a unit.' },
+      { icon: IconHash,            name: 'Numerical Advantage',                       description: 'Create a numerical advantage in attack and avoid being at a numerical disadvantage in defense.' },
+      { icon: IconArrowsLeftRight, name: 'Flow of the Ball',                          description: 'The ball should flow from inside to outside and outside to inside. Wide is more secure; middle increases options.' },
+      { icon: IconTriangle,        name: 'Triangle Principle and Passing Options',    description: 'The player in possession must receive constant support and have at least two passing options.' },
+      { icon: IconBolt,            name: 'Speed of Play',                             description: 'Quick movement of the ball creates 2v1 situations.' },
+      { icon: IconArrowsMove,      name: 'Movement Off the Ball',                     description: 'Find the best available space to create passing options for the player in possession.' },
+      { icon: IconCrosshair,       name: 'Pressure as a Unit',                        description: 'Organized pressure forces the opponents to commit errors.' },
+      { icon: IconRefresh,         name: 'Transition',                                description: 'Improve transition by reducing the number of passes needed to arrive at the target area or the opponent\'s goal.' },
+      { icon: IconCompass,         name: 'Direction of the Game',                     description: 'Play in any direction — back, wide, or forward — whatever creates the best opportunity.' },
+      { icon: IconBulb,            name: 'Take Initiative During the Game',           description: 'Team breakdowns will occur. The team must adapt to new situations and impose its own style of play.' },
     ],
-  },
-
-  // ── 13 ─────────────────────────────────────────────────────────
-  {
-    id: 'pop-team-2',
-    type: 'grid',
-    title: 'Principles of Play — Team (cont.)',
-    cols: 3,
-    items: [
-      {
-        title: 'Movement Off the Ball',
-        body: 'Find the best available space for passing options.',
-      },
-      {
-        title: 'Pressure as a Unit',
-        body: 'Organized pressure forces opponent errors.',
-      },
-      {
-        title: 'Transition',
-        body: 'Reduce passes needed to reach the target area or goal.',
-      },
-      {
-        title: 'Direction of the Game',
-        body: 'The game flows in all directions.',
-      },
-      {
-        title: 'Take Initiative During the Game',
-        body: 'Team must adapt to breakdowns and impose its own style.',
-      },
-    ],
+    coachNote: "These principles aren't just tactics — they define how we train and compete every week. If they don't align with how you or your son approach the game, that's okay. It just means we may not be the right fit for each other, and being upfront about that now is better for everyone.",
   },
 
   // ── 14 ─────────────────────────────────────────────────────────
@@ -313,91 +311,163 @@ export const slides: Slide[] = [
     id: 'section-dev',
     type: 'divider',
     title: 'Player Development',
-    subtitle: 'We develop players by combining modern technology, personalized feedback, and a clear path to high-level competition.',
+    subtitle: 'Technique through play. Game intelligence from the start. Tools that follow your son home.',
   },
 
   // ── 15 ─────────────────────────────────────────────────────────
   {
-    id: 'dev-problem-solution',
-    type: 'problem-solution',
-    title: 'How We Develop Players',
-    problem: {
-      heading: 'The Problem',
-      items: [
-        'Parent: Team practices are filled with teamwork — how can my son improve individually?',
-        'Coach: Not enough time to cover team and individual development in 3 hours per week.',
-        'Player: How come I\'m not getting better but other players are?',
-      ],
-    },
-    solution: {
-      heading: 'The Solution',
-      items: [
-        'Four ways to provide tailored individual training while keeping group practices focused on total team development.',
-        'Currently virtual — players self-coach and learn essential ball skills at home.',
-        'Can consider in-person sessions or group packages in the future.',
-      ],
+    id: 'dev-approach',
+    type: 'features',
+    title: 'Our Approach',
+    subtitle: 'Technique & Game Intelligence — Together',
+    hook: 'A common parent question: "Team practices are filled with teamwork — so how does my son improve individually?" We\'ve thought about this carefully.',
+    cols: 3,
+    sections: [
+      {
+        items: [
+          {
+            icon: IconBallFootball,
+            title: 'Technical Foundation',
+            description: 'Roughly a quarter of every practice is dedicated to focused technical work — passing patterns, dribbling moves, and finishing.',
+            note: 'That quarter is intentional — unopposed technical reps are most effective in short, focused bursts. The volume is meant to be supplemented at home through Anytime Soccer Training, where your son can log structured touches any day of the week.',
+          },
+          {
+            icon: IconBrain,
+            title: 'Game Intelligence',
+            description: 'The other three-quarters are spent inside the questions a player will actually face on Saturday — small-sided games, rondos, and scrimmages built around a tactical theme.',
+            note: 'Combination play, pressing shape, and transition can only be trained with a full team on the pitch. That makes team time the rarest resource we have — using it for individual ball work that your son can do at home any day of the week would be a waste of it.',
+          },
+          {
+            icon: IconAffiliate,
+            title: 'The Dutch TIC Model',
+            description: 'Technique, Insight, Communication — the KNVB argues these cannot be effectively trained in isolation. Game intelligence grows through playing the game.',
+            note: '18 million people. Smaller than Texas. 3 World Cup finals. 1 European Championship. A generation of players — Cruyff, Bergkamp, van Basten, Robben, van Dijk — that every era of global soccer has tried to explain. The Netherlands doesn\'t win because of better athletes. They win because they\'ve built a system that develops smarter players. TIC is the curriculum behind that.',
+            link: 'https://en.wikipedia.org/wiki/Total_football',
+            linkLabel: 'Total Football — Wikipedia ↗',
+          },
+        ],
+      },
+      {
+        label: 'Why U11 Is the Right Age',
+        items: [
+          {
+            icon: IconStar,
+            title: 'The Ideal Window',
+            description: 'U11 is the ideal developmental phase to initiate game intelligence and creativity.',
+          },
+          {
+            icon: IconMap,
+            title: 'Rules & Shape',
+            description: 'Kids this age understand the rules well enough to grasp the offensive and defensive shape of the game.',
+          },
+          {
+            icon: IconPuzzle,
+            title: 'Fitting the Bigger Picture',
+            description: "They're keen to learn how their abilities fit into the team — which is exactly what our practices train.",
+          },
+        ],
+      },
+    ],
+    quote: {
+      text: 'Driving a car is best learnt when you sit behind the wheel and join the traffic. You must play soccer in order to learn the techniques.',
+      attribution: 'Royal Dutch Football Association (KNVB)',
     },
   },
 
   // ── 16 ─────────────────────────────────────────────────────────
   {
-    id: 'dev-tools-1',
+    id: 'dev-tools',
     type: 'tools',
-    title: 'How We Develop Players — Tools',
+    title: 'Four Tools That Follow Your Son Home',
     items: [
       {
         name: 'Trace',
-        description: 'Coach saves player highlight reels pointing out accomplishments and ways to improve, linked with the player\'s IDP.',
+        description: "After games and tournaments, the coach saves a highlight reel for each player calling out their wins and the next thing to work on. Tied directly to your son's IDP so the feedback he gets on Saturday becomes the focus of his next training week.",
         image: 'assets/images/dev-tools/trace.png',
+        imageFit: 'contain',
+        link: 'https://traceup.com/',
+      },
+      {
+        name: 'Individual Development Plans',
+        description: "Individual Development Plans shift the conversation from team results to your son's specific next step. We review them together, update them as he grows, and use them to anchor every other tool on this page.",
+        image: 'assets/images/dev-tools/idp.png',
         imageFit: 'contain',
       },
       {
-        name: 'Individual Development Plans (IDP)',
-        description: 'Shifts focus from weekend team results to the child\'s specific needs.',
-        image: 'assets/images/dev-tools/idp.png',
+        name: 'Sports Lab 360',
+        description: "Sports Lab 360 builds game intelligence off the field. Players watch real match footage, work through an interactive lesson, and take a short quiz — and then come back to practice already speaking the language we're using on the pitch.",
+        image: 'assets/images/dev-tools/sports-lab-360.png',
         imageFit: 'contain',
+        link: 'https://sportslab360.com/',
+      },
+      {
+        name: 'Anytime Soccer Training',
+        description: "Team practice alone doesn't build a great first touch. Anytime Soccer Training gives your son a structured at-home program — and lets the coach assign sessions, track progress, and align the work with his IDP.",
+        image: 'assets/images/dev-tools/anytime-soccer-training.png',
+        imageFit: 'contain',
+        link: 'https://www.anytime-soccer.com/',
       },
     ],
   },
 
   // ── 17 ─────────────────────────────────────────────────────────
   {
-    id: 'dev-tools-2',
-    type: 'tools',
-    title: 'How We Develop Players — Tools (cont.)',
-    items: [
+    id: 'dev-love',
+    type: 'text',
+    title: 'Love of the Game',
+    image: 'assets/images/action/teach-teaching-highlights.png',
+    bullets: [
+      'We study highlights from our own matches and from the pros. The clips become a shared vocabulary for what we\'re trying to do on Saturday — and a window into a level of the game that inspires kids to keep working.',
+      'At U11, our number one priority is making sure these players love the game. Tactics, technique, and tools all matter — but they only matter if a kid wants to put in the work.',
+      'That\'s where every single thing on this page begins.',
+    ],
+    quote: 'Commitment starts with love. At U11, our number one priority is making sure these players love the game — because the rest only happens when they want to put in the work.',
+    note: {
+      label: 'ONE LAST NOTE',
+      text: "Great coaches disagree about technique-first vs. game-first, and we respect both views. We've made our choice based on what we've seen work for U11 players — and on the same approach the world's most successful youth systems use. But ultimately, we just want your son to fall in love with this game and keep getting better.",
+    },
+  },
+
+  // ── 18a ────────────────────────────────────────────────────────
+  {
+    id: 'dev-curriculum-1',
+    type: 'dual-image',
+    title: "What He'll Learn Across a Season",
+    subtitle: 'U.S. Soccer Player Development Curriculum',
+    images: [
+      { src: 'assets/images/season-plan/tactical-by-age.png', caption: 'Tactical Development by Age', icon: IconCompass },
+      { src: 'assets/images/season-plan/technical-by-age.png', caption: 'Technical Development by Age', icon: IconBallFootball },
+    ],
+    coachNotes: [
       {
-        name: 'Sports Lab 360',
-        description: 'Become a smarter player through watching real game film, interactive lessons, and quizzes.',
-        image: 'assets/images/dev-tools/sports-lab-360.png',
-        imageFit: 'contain',
+        heading: 'Tactical — Our Adjustments',
+        note: 'Compactness (staying organized and narrow in defense) and Switching Play (moving the ball wide to change the point of attack) are priorities we go deeper on than the curriculum shows. These two concepts shape how we defend and create space in attack.',
       },
       {
-        name: 'Anytime Soccer Training',
-        description: 'Structured system for home training. Coach can assign and track progress.',
-        image: 'assets/images/dev-tools/anytime-soccer-training.png',
-        imageFit: 'contain',
+        heading: 'Technical — Our Adjustments',
+        note: 'Heading is not permitted at U11 under current U.S. Soccer concussion guidelines — this chart predates that rule, so ignore it here. We also invest more time in 1v1 defending than the curriculum reflects, as individual defensive technique is foundational at this age.',
       },
     ],
   },
 
-  // ── 18 ─────────────────────────────────────────────────────────
+  // ── 18b ────────────────────────────────────────────────────────
   {
-    id: 'dev-culture',
-    type: 'tools',
-    title: 'How We Develop Players — Culture',
-    items: [
+    id: 'dev-curriculum-2',
+    type: 'dual-image',
+    title: "What He'll Learn Across a Season",
+    subtitle: 'U.S. Soccer Player Development Curriculum',
+    images: [
+      { src: 'assets/images/season-plan/psychosocial-by-age.png', caption: 'Psychological Development by Age', icon: IconBrain },
+      { src: 'assets/images/season-plan/physical-by-age.png', caption: 'Physical Development by Age', icon: IconBolt },
+    ],
+    coachNotes: [
       {
-        name: 'Highlights & Videos',
-        description: 'Study highlights from own matches and professional games to build love of the game and tactical awareness.',
-        image: 'assets/images/action/teach-teaching-highlights.png',
-        imageFit: 'cover',
+        heading: 'Psychological — Our Focus',
+        note: 'Attitude and Effort are our baselines — the two things every player is held to regardless of the scoreboard. This season the areas we expect to grow into are Commitment and Self-Motivation: the internal drive to keep working, keep showing up, and keep improving when no one is pushing you to.',
       },
       {
-        name: 'Love of the Game',
-        description: 'Commitment starts with love of the game. At U11, the number one priority is ensuring players love the game so they want to put in the work.',
-        image: 'assets/images/action/rondo.jpg',
-        imageFit: 'cover',
+        heading: 'Physical — Our Adjustments',
+        note: "Strength and cardiovascular endurance are not meaningful training targets at U11 — the body simply isn't ready for that work. What the research consistently shows: coordination, agility, and movement quality are what compound at this age. The big, fast kid advantage fades. The player who moves well keeps getting better.",
       },
     ],
   },
@@ -413,41 +483,60 @@ export const slides: Slide[] = [
   // ── 20 ─────────────────────────────────────────────────────────
   {
     id: 'advanced-leagues',
-    type: 'text',
-    title: 'Advanced Leagues',
-    bullets: [
-      '"Aren\'t I limiting my future options if I play for Synergy?"',
-      'Synergy focuses on personalized development, not treating kids like numbers. It builds a strong foundation for elite pathways.',
-      'Direct relationship with Phoenix Premier provides a path to MLS Next.',
-      'Open League allows dual-rostering — players can join Phoenix Premier MLS Next while continuing with Synergy.',
-      'Boys from Synergy already play for the U13 Phoenix Premier MLS Next team.',
+    type: 'hero-question',
+    eyebrow: 'Advanced Leagues',
+    question: "Aren't I limiting my future options if I play for Synergy?",
+    intro: [
+      'This is one of the most common questions we hear — and it deserves a real answer.',
+      'The short version is no.',
+      'But the more useful question is: what actually develops a player at this age?',
     ],
+    image: 'assets/images/season-plan/synergy-phx-premier-mls-next.png',
+    points: [
+      {
+        icon: IconHistory,
+        title: "It's still the beginning",
+        description: "At U10–U11, performance reflects physical maturity, early specialization, and hours already on the ball — not who will be the better player at 15. The early standout is often not the same player who excels in high school. The skills worth building right now are technical habit and love of the game, not a league resume.",
+      },
+      {
+        icon: IconBallFootball,
+        title: 'Playing time is the unit of development',
+        description: "A player earning meaningful minutes on a well-coached team — making decisions, making mistakes, solving real problems — develops faster than one sitting a bench on a higher-division roster. The rep count matters more than the label on the schedule.",
+      },
+      {
+        icon: IconUsers,
+        title: 'A trusted coach is irreplaceable',
+        description: "When a player trusts his coach, he takes risks. When he takes risks, he grows. That feedback loop — try something, hear why, try again — is what development actually looks like. A 'slightly better' team with a new coaching relationship can slow that down more than most parents realize.",
+      },
+      {
+        icon: IconTrophy,
+        title: 'Chasing wins at this age can backfire',
+        description: "Teams that dominate U11 often do it by playing down or leaning on physical advantages that fade by U14. An 8-0 blowout teaches almost nothing. A tight 2-1 loss against real competition teaches everything. We want close, demanding games — that's where growth actually happens.",
+      },
+    ],
+    pathway: {
+      heading: 'When the time is right, the path is clear.',
+      body: "Synergy has a direct relationship with Phoenix Premier, which runs one of the two youth pathways we genuinely believe matter: MLS Next. Boys from our program are already playing for the U13 Phoenix Premier MLS Next team. We're not closing a door — we're saying there's real value in not rushing through it before a player is ready. Our philosophy is to build the foundation through U13. By then, the right next step becomes obvious, and we'll say so plainly.",
+    },
   },
 
   // ── 21 ─────────────────────────────────────────────────────────
   {
-    id: 'interstitial-humor',
-    type: 'interstitial',
-    lines: [
-      '"Wait, what\'s an MLS Next? Is that like the \'gold\' division?"',
-      '"If you just drop your kid off and aren\'t thinking he is going to do this for money, you can skip this next section."',
-    ],
-  },
-
-  // ── 22 ─────────────────────────────────────────────────────────
-  {
     id: 'things-you-will-hear',
     type: 'quote-collage',
-    title: 'Things You Will Hear',
+    eyebrow: 'A brief intermission',
+    title: 'The Noise',
+    intro: [
+      "If you're just here for the soccer and not thinking about scholarships, exposure trips, or which division signals serious — feel free to scroll past the next few slides.",
+      "But these conversations are coming for you either way.",
+    ],
     quotes: [
-      '"Our team plays ECNL..."',
-      '"We\'re in MLS Next..."',
-      '"It costs $8,000 a year but the exposure is worth it."',
-      '"My son plays every minute — I want that."',
-      '"Is this the D1 level?"',
-      '"Is Synergy the \'silver\' division?"',
-      '"I heard their coach played professionally."',
-      '"We need to start thinking about scholarships now."',
+      '"I heard there\'s ECNL, then ECNL Regional, then MLS Next, then MLS Next Tier 2… honestly I don\'t even know which one we should be in. Is regional bad?"',
+      '"It only costs $2,000 a year in club fees, but with travel, kit, and private training I spent $6,000 last year. Hopefully the college exposure is worth it."',
+      '"Wait — what\'s MLS Next? Is that like the \'gold\' division?"',
+      '"Yeah we paid the fees, got him into the club, got the jacket… honestly he\'s only played in like three games but the director said he\'s \'in the system\' and there could be a showcase in the spring."',
+      '"We\'re seriously considering moving him to an ECNL club next fall. I mean… if he\'s not in ECNL by U14, does he even have a shot at D1?"',
+      '"We\'re paying $4,000 a year, he sits most games, and whenever I ask the coach he just says \'development takes time.\' I love the club but I\'m starting to feel like we\'re just… subsidizing someone else\'s kid\'s travel."',
     ],
   },
 
@@ -458,6 +547,41 @@ export const slides: Slide[] = [
     title: 'Understanding the Youth Soccer Pyramid',
     image: 'assets/images/season-plan/soccer-pyramid.png',
     caption: 'Complete Guide to US Youth Soccer Structure 2026',
+    sidebar: {
+      items: [
+        {
+          name: 'MLS Academy',
+          tag: 'PROFESSIONAL CLUB',
+          description: "Youth academies operated directly by MLS professional clubs. Players train in a pro environment tied to an actual first team — fully funded, no club fees. The very top of the US youth pyramid.",
+        },
+        {
+          name: 'MLS Next',
+          tag: 'NATIONAL · TIER 1',
+          description: 'The premier national youth league, launched in 2021. Open to MLS Academies and elite independent clubs. The primary pathway to the professional game and the D1 programs that feed it. ~73% of D1 men\'s recruits come from MLS Next or ECNL.',
+        },
+        {
+          name: 'MLS Next Tier 2',
+          tag: 'NATIONAL · TIER 2',
+          description: 'A second division within the MLS Next ecosystem — slightly less selective than Tier 1 but still national competition. A legitimate stepping stone for players progressing toward the top flight.',
+        },
+        {
+          name: 'ECNL',
+          tag: 'NATIONAL · INDEPENDENT',
+          description: 'Elite Clubs National League — the top independent club league, considered on par with MLS Next for college recruitment. Heavy emphasis on college exposure through showcase tournaments attended by D1 coaches across the country.',
+        },
+        {
+          name: 'ECNL Regional',
+          tag: 'REGIONAL',
+          description: 'The regional division of ECNL. Below the national conference level but maintaining the ECNL training standards and brand. The most common entry point into the ECNL structure.',
+        },
+      ],
+      callout: {
+        label: 'Phoenix — A Unique Advantage',
+        heading: 'FC Barcelona Residency Academy',
+        body: "Casa Grande, AZ — 45 min from Phoenix — is home to the only FC Barcelona-affiliated residency program in the US. Every graduate has earned a college scholarship or professional contract. On par with an MLS Academy in terms of pathway and prestige.",
+        link: 'https://barcaresidencyacademyusa.com/',
+      },
+    },
   },
 
   // ── 24 ─────────────────────────────────────────────────────────
@@ -467,18 +591,67 @@ export const slides: Slide[] = [
     title: 'What Are the Outcomes of These Leagues?',
     image: 'assets/images/season-plan/league-outcomes.png',
     caption: 'MLS Next top tier + ECNL together supply ~73% of men\'s D1 recruits (NE study, 2024). 37% of D1 men\'s rosters are international players.',
+    fade: true,
   },
 
   // ── 25 ─────────────────────────────────────────────────────────
   {
     id: 'personal-take',
-    type: 'text',
-    title: 'Understanding the Youth Soccer Pyramid — Personal Take',
-    bullets: [
-      'For players with deep internal drive, aiming for MLS Next and ECNL is a fantastic goal.',
-      '"Start thinking: what do you want your son\'s Soccer Journey to be?"',
-      'Every situation is unique; there\'s nothing wrong with chasing the middle tier.',
-      'Montone family personal take: wouldn\'t recommend leagues below MLS Next & ECNL unless specifically to play with friends, want a specific badge, want to feel like a mini-pro, or just want to try it out for a year.',
+    type: 'journey-reflection',
+    eyebrow: 'Beyond U11 — A Personal Take',
+    question: "What do you want your son's Soccer Journey to look like?",
+    intro: [
+      'For players with real internal drive and a love for the game, aiming for MLS Next and ECNL is a fantastic goal. We celebrate and support that ambition.',
+      "But every family's situation is unique — and there's nothing wrong with the middle tier. It's just not for the Montone family.",
     ],
+    tiers: [
+      {
+        tier: 'Elite',
+        sublabel: 'MLS Next · ECNL',
+        tag: 'Worth chasing if the drive is genuine',
+        tagColor: 'gold',
+        description: "The only two tiers with a clear pathway to college recruitment and the professional game. ~73% of D1 men's recruits come from here. If the drive is real and the player is ready, this is the destination.",
+        honest: "Getting there requires real sacrifice — heavy travel, high fees, an intensely competitive environment. When it's the right fit, it's worth every bit of it.",
+      },
+      {
+        tier: 'The Middle Zone',
+        sublabel: 'Everything in between',
+        tag: "We'd think hard before committing",
+        tagColor: 'amber',
+        description: "The leagues between local club and MLS Next/ECNL cost nearly as much and demand just as much travel — without the same developmental or recruitment payoff. 5–10 travel weekends, several requiring flights.",
+        honest: "Joining win-now environments before a player is ready often leads to burnout and anxiety. It takes the joy out of the sport during the most crucial learning years. All sports becomes play-to-win — and that's a dangerous place to be at U11.",
+      },
+      {
+        tier: 'Foundation',
+        sublabel: 'Club · Local (Where We Are)',
+        tag: 'Where love is built',
+        tagColor: 'blue',
+        description: "Not a consolation prize. This is where most great players spend their formative years — building fundamentals, trusting their coach, and falling in love with the game before the pressure sets in.",
+        honest: "Give your son a dedicated coach and a stable environment before chasing the next level. Imagine learning your job while they kept rotating in new people to replace you during your training. That's what constant team-switching does.",
+      },
+    ],
+    storiesLabel: 'Why we feel this way — our own experiences',
+    stories: [
+      {
+        person: 'Coach Ashley',
+        role: 'Reached local · state · regional teams',
+        story: "Made it all the way to state and regional teams. When she hit the top, she realized she'd lost the love along the way. She went back to her club team — and found it again there.",
+      },
+      {
+        person: 'Coach Jeff',
+        role: 'Win-first teams · switched every year',
+        story: 'Played on teams that prioritized winning. Switched clubs every year chasing the next level. Walked away from the sport never wanting to play again — only to rediscover that love in his 20s, playing with players from other countries who showed him a completely different way to play the game.',
+      },
+      {
+        person: 'Our Daughter',
+        role: 'New club · advanced league placement',
+        story: "Joined a new club she was excited about. Because the club only competed in advanced leagues, this beginner team was placed in DPL — requiring flights to Utah, Colorado, and Texas. No one stopped to ask whether the team was ready to compete at that level.",
+      },
+    ],
+    promise: {
+      label: 'Our Commitment to You',
+      heading: "If Charlie's path changes, you'll know well in advance.",
+      body: "If we see the signs — dominant performances, outgrowing the competition, the kind of internal drive that can't be coached — we'll say so plainly. You won't need to wonder. We won't string you along, and we won't be slow to say it. As parents, chasing the elite path is our last option for Charlie. It has to come from him — his hunger, his love, his choice — not as a default next step because he's good at U11.",
+    },
   },
 ]
