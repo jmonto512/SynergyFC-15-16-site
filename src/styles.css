@@ -868,6 +868,60 @@
       .scroll-indicator { display: none; }
     }
 
+    /* ─── TRYOUT POSTERS ─── */
+    .poster-container {
+      background: #0a0a0f;
+    }
+
+    .poster {
+      width: 816px;    /* 8.5in at 96dpi */
+      height: 1056px;  /* 11in at 96dpi */
+      background: #0a0a0f;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 52px 60px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .poster-badge {
+      position: absolute;
+      top: 22px;
+      right: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      user-select: none;
+    }
+
+    /* Named page so poster print size (letter portrait) doesn't conflict with slides (16:9 landscape) */
+    .poster { page: tryout-poster; }
+
+    @page tryout-poster { size: letter portrait; margin: 0; }
+
+    @media print {
+      .poster-container {
+        background: #0a0a0f;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .poster {
+        break-after: page;
+        width: 8.5in;
+        height: 11in;
+        overflow: hidden;
+        border-bottom: none;
+        margin: 0;
+      }
+    }
+
     /* ─── LEARN AREA (policies page) ─── */
     .learn-area {
       margin-bottom: 32px;
