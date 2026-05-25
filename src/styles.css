@@ -851,7 +851,13 @@
     }
 
     @media (max-width: 640px) {
-      .slide { padding: 48px 24px 80px; }
+      .slide {
+        padding: 48px 24px 80px;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+        justify-content: flex-start;
+      }
       .slide-badge { right: 20px; top: 16px; }
     }
 

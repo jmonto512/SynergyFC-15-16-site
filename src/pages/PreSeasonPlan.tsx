@@ -1,5 +1,6 @@
 import React, { useState, useMemo, createContext, useContext } from 'react'
 import { Box, SimpleGrid, Stack, Text, Title, Group } from '@mantine/core'
+import { useMediaQuery } from '@mantine/hooks'
 import { slides } from '../data/preSeasonPlan'
 import type {
   PreSeasonSlide, CoachesSlide, StorySlide, DevSplitSlide,
@@ -1605,82 +1606,132 @@ function RenderScheduleStats({ slide }: { slide: ScheduleStatsSlide }) {
 
 function RenderCostsTable({ slide }: { slide: CostsTableSlide }) {
   const T = useT()
+  const isMobile = useMediaQuery('(max-width: 640px)')
   return (
     <Box style={{ width: '100%' }}>
       <SlideHeading title={slide.title} />
       <Box style={{ border: `1px solid ${T.r(0.1)}`, overflow: 'hidden', marginBottom: slide.note ? 24 : 0 }}>
-        <Box
-          style={{
-            display: 'grid', gridTemplateColumns: '1fr 180px 2fr',
-            padding: '12px 20px',
-            background: T.r(0.04),
-            borderBottom: `1px solid ${T.r(0.1)}`,
-          }}
-        >
-          {['Item', 'Cost', 'Notes'].map((h) => (
-            <Text key={h} style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: T.r(0.35), fontWeight: 400 }}>
-              {h}
-            </Text>
-          ))}
-        </Box>
-        {slide.rows.map((row, i) => (
+        {!isMobile && (
           <Box
-            key={i}
             style={{
               display: 'grid', gridTemplateColumns: '1fr 180px 2fr',
-              padding: '16px 20px',
-              background: i % 2 === 0 ? T.r(0.015) : 'transparent',
-              borderBottom: i < slide.rows.length - 1 ? `1px solid ${T.r(0.06)}` : undefined,
-              alignItems: 'center',
+              padding: '12px 20px',
+              background: T.r(0.04),
+              borderBottom: `1px solid ${T.r(0.1)}`,
             }}
           >
-            <Group gap="sm" align="center">
-              <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 20px)', color: T.text, lineHeight: 1.2 }}>
-                {row.item}
+            {['Item', 'Cost', 'Notes'].map((h) => (
+              <Text key={h} style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: T.r(0.35), fontWeight: 400 }}>
+                {h}
               </Text>
-              {row.optional && (
-                <Box style={{ padding: '2px 7px', background: T.r(0.06), border: `1px solid ${T.r(0.15)}` }}>
-                  <Text style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '2px', textTransform: 'uppercase', color: T.r(0.4) }}>
-                    Optional
-                  </Text>
-                </Box>
-              )}
-            </Group>
-            <Text
+            ))}
+          </Box>
+        )}
+        {slide.rows.map((row, i) => (
+          isMobile ? (
+            <Box
+              key={i}
               style={{
-                fontFamily: MONO,
-                fontSize: 'clamp(14px, 1.5vw, 17px)',
-                color: `${T.gold}0.9)`,
-                fontWeight: 500,
+                padding: '14px 16px',
+                background: i % 2 === 0 ? T.r(0.015) : 'transparent',
+                borderBottom: i < slide.rows.length - 1 ? `1px solid ${T.r(0.06)}` : undefined,
               }}
             >
-              {row.cost}
-            </Text>
-            <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', color: T.r(0.62), lineHeight: 1.55, fontWeight: 500 }}>
-              {row.notes}
-            </Text>
-          </Box>
+              <Group gap="sm" align="center" justify="space-between" mb={6}>
+                <Group gap="sm" align="center">
+                  <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 20px)', color: T.text, lineHeight: 1.2 }}>
+                    {row.item}
+                  </Text>
+                  {row.optional && (
+                    <Box style={{ padding: '2px 7px', background: T.r(0.06), border: `1px solid ${T.r(0.15)}` }}>
+                      <Text style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '2px', textTransform: 'uppercase', color: T.r(0.4) }}>
+                        Optional
+                      </Text>
+                    </Box>
+                  )}
+                </Group>
+                <Text style={{ fontFamily: MONO, fontSize: 'clamp(14px, 1.5vw, 17px)', color: `${T.gold}0.9)`, fontWeight: 500, flexShrink: 0 }}>
+                  {row.cost}
+                </Text>
+              </Group>
+              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', color: T.r(0.55), lineHeight: 1.55, fontWeight: 500 }}>
+                {row.notes}
+              </Text>
+            </Box>
+          ) : (
+            <Box
+              key={i}
+              style={{
+                display: 'grid', gridTemplateColumns: '1fr 180px 2fr',
+                padding: '16px 20px',
+                background: i % 2 === 0 ? T.r(0.015) : 'transparent',
+                borderBottom: i < slide.rows.length - 1 ? `1px solid ${T.r(0.06)}` : undefined,
+                alignItems: 'center',
+              }}
+            >
+              <Group gap="sm" align="center">
+                <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 20px)', color: T.text, lineHeight: 1.2 }}>
+                  {row.item}
+                </Text>
+                {row.optional && (
+                  <Box style={{ padding: '2px 7px', background: T.r(0.06), border: `1px solid ${T.r(0.15)}` }}>
+                    <Text style={{ fontFamily: MONO, fontSize: 8, letterSpacing: '2px', textTransform: 'uppercase', color: T.r(0.4) }}>
+                      Optional
+                    </Text>
+                  </Box>
+                )}
+              </Group>
+              <Text style={{ fontFamily: MONO, fontSize: 'clamp(14px, 1.5vw, 17px)', color: `${T.gold}0.9)`, fontWeight: 500 }}>
+                {row.cost}
+              </Text>
+              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', color: T.r(0.62), lineHeight: 1.55, fontWeight: 500 }}>
+                {row.notes}
+              </Text>
+            </Box>
+          )
         ))}
         {slide.total && (
-          <Box
-            style={{
-              display: 'grid', gridTemplateColumns: '1fr 180px 2fr',
-              padding: '16px 20px',
-              background: `linear-gradient(135deg, ${T.gold}0.08) 0%, ${T.r(0.04)} 100%)`,
-              borderTop: `2px solid ${T.gold}0.4)`,
-              alignItems: 'center',
-            }}
-          >
-            <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: `${T.gold}0.6)` }}>
-              Estimated Total
-            </Text>
-            <Text style={{ fontFamily: MONO, fontSize: 'clamp(14px, 1.5vw, 17px)', color: `${T.gold}0.9)`, fontWeight: 600 }}>
-              {slide.total}
-            </Text>
-            <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', color: T.r(0.4), lineHeight: 1.55 }}>
-              excluding optional Trace subscription
-            </Text>
-          </Box>
+          isMobile ? (
+            <Box
+              style={{
+                padding: '14px 16px',
+                background: `linear-gradient(135deg, ${T.gold}0.08) 0%, ${T.r(0.04)} 100%)`,
+                borderTop: `2px solid ${T.gold}0.4)`,
+              }}
+            >
+              <Group gap="sm" align="center" justify="space-between">
+                <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: `${T.gold}0.6)` }}>
+                  Estimated Total
+                </Text>
+                <Text style={{ fontFamily: MONO, fontSize: 'clamp(14px, 1.5vw, 17px)', color: `${T.gold}0.9)`, fontWeight: 600 }}>
+                  {slide.total}
+                </Text>
+              </Group>
+              <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', color: T.r(0.4), lineHeight: 1.55, marginTop: 4 }}>
+                excluding optional Trace subscription
+              </Text>
+            </Box>
+          ) : (
+            <Box
+              style={{
+                display: 'grid', gridTemplateColumns: '1fr 180px 2fr',
+                padding: '16px 20px',
+                background: `linear-gradient(135deg, ${T.gold}0.08) 0%, ${T.r(0.04)} 100%)`,
+                borderTop: `2px solid ${T.gold}0.4)`,
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{ fontFamily: MONO, fontSize: 10, letterSpacing: '3px', textTransform: 'uppercase', color: `${T.gold}0.6)` }}>
+                Estimated Total
+              </Text>
+              <Text style={{ fontFamily: MONO, fontSize: 'clamp(14px, 1.5vw, 17px)', color: `${T.gold}0.9)`, fontWeight: 600 }}>
+                {slide.total}
+              </Text>
+              <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', color: T.r(0.4), lineHeight: 1.55 }}>
+                excluding optional Trace subscription
+              </Text>
+            </Box>
+          )
         )}
       </Box>
       {slide.note && (

@@ -15,7 +15,7 @@ Live path: `/SynergyFC-15-16-site/pre-season-plan.html`
 
 ## Type System
 
-`PreSeasonSlide = BaseSlide | CoachesSlide | StorySlide | DevSplitSlide | PlayingRosterSlide | ContinuumSlide | ZpdGoalsSlide | ScheduleStatsSlide | CostsTableSlide`
+`PreSeasonSlide = BaseSlide | CoachesSlide | StorySlide | DevSplitSlide | PlayingRosterSlide | ContinuumSlide | ZpdGoalsSlide | ScheduleStatsSlide | CostsTableSlide | QuoteImageSlide`
 
 `BaseSlide` is imported from `src/data/seasonPlan.ts` and covers: `title`, `divider`, `text`, `tools`, `grid`, `features`, `interstitial`, `two-column`, `problem-solution`, `quote-collage`, `image`, `dual-image`, `principles-table`, `hero-question`, `journey-reflection`.
 
@@ -29,15 +29,35 @@ Live path: `/SynergyFC-15-16-site/pre-season-plan.html`
 - `ZpdGoalsSlide` — Two-column ZPD diagram (SVG) + philosophy bullets + win target callout.
 - `ScheduleStatsSlide` — Big-number stat grid (4 stats: number, label, detail) + optional note box. Type: `schedule-stats`.
 - `CostsTableSlide` — Table layout with columns Item / Cost / Notes. Optional `total` row. Type: `costs-table`.
+- `QuoteImageSlide` — Full-slide centered layout: large image above, large serif italic quote, MONO attribution, optional "Watch the clip" button. Fields: `image`, `quote`, `attribution`, `href?`. Type: `quote-image`.
 
 **Extended BaseSlide fields** (added to `seasonPlan.ts`):
 - `GridItem.icon?: IconComponent` — renders a colored icon box above the card title
 - `GridItem.iconColor?: string` — color passed to the icon (defaults to gold)
 - `GridItem.star?: boolean` — renders a ★ Priority badge in the top-right corner
 - `LeagueItem.star?: boolean` — renders ★★ stars next to the item name in image slide sidebars
-- `FeaturesSlide.imageQuote?: { text, attribution, image, href? }` — renders an image + quote block (e.g. Arteta duck) at the bottom of a features slide
+- `FeaturesSlide.imageQuote?: { text, attribution, image, href? }` — renders an image + quote block at the bottom of a features slide (defined in seasonPlan.ts, renderer supports it, but not currently used in preSeasonPlan data — Arteta duck was moved to its own `duck-rabbit` slide)
 
-## Current Slides (27 total)
+## Theme System
+
+`PreSeasonPlan.tsx` has a built-in light/dark toggle (fixed-position button, top-left). Theme is derived via `makeTheme(light: boolean)` and distributed through `ThemeCtx` (React context). All renderers call `useT()` to access the current theme.
+
+```ts
+type SlideTheme = {
+  light: boolean
+  bg: string          // page background
+  chartBg: string     // SVG/chart inner fill
+  text: string        // primary text color
+  r(n: number): string  // rgba(base, n) — adapts to light/dark
+  gold: string        // gold prefix — usage: `${T.gold}0.85)`
+  noteBg, noteBorder, noteTop, noteLabel, noteBody: string
+  blueAccent: string
+}
+```
+
+Dark mode uses `rgba(255,255,255,n)` as the base; light mode uses `rgba(15,15,25,n)`. Gold in light mode is `rgba(185,110,0,` (darker to stay readable on `#f5f3ef`).
+
+## Current Slides (28 total)
 
 | # | id | type | Notes |
 |---|-----|------|-------|
@@ -57,17 +77,18 @@ Live path: `/SynergyFC-15-16-site/pre-season-plan.html`
 | 14 | `pop-team` | `principles-table` | 10 team principles of play |
 | 15 | `section-family` | `divider` | "Your Role in the Team" |
 | 16 | `parent-expectations` | `grid` | 6 cards, cols=3. Team Culture first (★ Priority badge + gold heart icon). All cards have colored icons. |
-| 17 | `home-support` | `features` | 5 cards, cols=3. Arteta duck imageQuote at bottom. |
-| 18 | `schedule` | `schedule-stats` | 4 big-number stats: practices, games, tournaments, free weekends |
-| 19 | `costs` | `costs-table` | 5 line items + estimated total row |
-| 20 | `section-beyond` | `divider` | "Beyond U11" |
-| 21 | `beyond-intro` | `interstitial` | Context: new team, not today's focus, ask us anything |
-| 22 | `advanced-leagues` | `hero-question` | "Does playing for Synergy limit my future options?" |
-| 23 | `soccer-pyramid` | `image` | Pyramid image + sidebar. Stars (★★) on MLS Academy, MLS Next, ECNL. |
-| 24 | `league-outcomes` | `image` | Outcomes image + sidebar callout: ~35% ECNL → D1. |
-| 25 | `personal-take` | `journey-reflection` | 3 tiers + stories + promise |
-| 26 | `faq` | `grid` | 6 Q&As, cols=2 |
-| 27 | `love-of-game` | `interstitial` | Closing 3-line statement |
+| 17 | `home-support` | `features` | 5 cards, cols=3. |
+| 18 | `duck-rabbit` | `quote-image` | Arteta duck image (inverted in dark mode) + full-slide centered quote. Links to YouTube short. |
+| 19 | `schedule` | `schedule-stats` | 4 big-number stats: practices, games, tournaments, free weekends |
+| 20 | `costs` | `costs-table` | 5 line items + estimated total row |
+| 21 | `faq` | `grid` | 6 Q&As, cols=2 |
+| 22 | `section-beyond` | `divider` | "Beyond U11" |
+| 23 | `beyond-intro` | `interstitial` | Context: new team, not today's focus, ask us anything |
+| 24 | `advanced-leagues` | `hero-question` | "Does playing for Synergy limit my future options?" |
+| 25 | `soccer-pyramid` | `image` | Pyramid image + sidebar. Stars (★★) on MLS Academy, MLS Next, ECNL. |
+| 26 | `league-outcomes` | `image` | Outcomes image + sidebar callout: ~35% ECNL → D1. |
+| 27 | `personal-take` | `journey-reflection` | 3 tiers + stories + promise |
+| 28 | `love-of-game` | `interstitial` | Closing 3-line statement |
 
 ## Design Constants (in PreSeasonPlan.tsx)
 
