@@ -10,7 +10,6 @@ export default defineConfig({
         main: './index.html',
         policies: './policies.html',
         playerDevelopment: './player-development.html',
-        seasonPlan: './season-plan.html',
         preSeasonPlan: './pre-season-plan.html',
         tryoutPosters: './tryout-posters.html',
       },
