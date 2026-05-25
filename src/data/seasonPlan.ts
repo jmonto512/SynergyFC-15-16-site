@@ -12,9 +12,12 @@ export interface Column {
 
 export interface GridItem {
   title: string
-  body: string
+  body: string | string[]
   iconImage?: string
   tags?: string[]
+  icon?: IconComponent
+  iconColor?: string
+  star?: boolean
 }
 
 export interface ToolItem {
@@ -44,7 +47,7 @@ export type TextSlide = { type: 'text'; title: string; bullets: BulletItem[]; qu
 export type ProblemSolutionSlide = { type: 'problem-solution'; title: string; problem: Column; solution: Column }
 export type ToolsSlide = { type: 'tools'; title: string; items: ToolItem[] }
 export type QuoteCollageSlide = { type: 'quote-collage'; title: string; eyebrow?: string; intro?: string | string[]; quotes: string[] }
-export type LeagueItem = { name: string; tag?: string; description: string; link?: string }
+export type LeagueItem = { name: string; tag?: string; description: string; link?: string; star?: boolean }
 export type ImageSlide = {
   type: 'image'
   title: string
@@ -53,13 +56,13 @@ export type ImageSlide = {
   fade?: boolean
   sidebar?: {
     items: LeagueItem[]
-    callout?: { label: string; heading: string; body: string; link?: string }
+    callout?: { label: string; heading: string; body: string; link?: string; star?: boolean }
   }
 }
 export type DualImageSlide = { type: 'dual-image'; title: string; subtitle?: string; images: Array<{ src: string; caption?: string; icon?: IconComponent }>; coachNotes?: Array<{ heading: string; note: string }>; quote?: { text: string; attribution?: string } }
 export type InterstitialSlide = { type: 'interstitial'; lines: string[] }
 export type PrinciplesTableSlide = { type: 'principles-table'; title: string; rows: PrinciplesTableRow[]; coachNote?: string }
-export type FeatureItem = { icon: IconComponent; title: string; description: string; note?: string; link?: string; linkLabel?: string }
+export type FeatureItem = { icon: IconComponent; title: string; description: string | string[]; note?: string; link?: string; linkLabel?: string }
 export type FeaturesSection = { label?: string; items: FeatureItem[] }
 export type FeaturesSlide = {
   type: 'features'
@@ -70,6 +73,7 @@ export type FeaturesSlide = {
   sections: FeaturesSection[]
   quote?: { text: string; attribution: string; context?: string }
   note?: { label: string; text: string }
+  imageQuote?: { text: string; attribution: string; image: string; href?: string }
 }
 
 export type HeroQuestionPoint = { icon: IconComponent; title: string; description: string }
@@ -596,6 +600,7 @@ export const slides: Slide[] = [
         heading: 'FC Barcelona Residency Academy',
         body: "Casa Grande, AZ — 45 min from Phoenix — is home to the only FC Barcelona-affiliated residency program in the US. Every graduate has earned a college scholarship or professional contract. On par with an MLS Academy in terms of pathway and prestige.",
         link: 'https://barcaresidencyacademyusa.com/',
+        star: true,
       },
     },
   },

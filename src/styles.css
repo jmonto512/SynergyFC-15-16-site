@@ -786,7 +786,7 @@
 
     .slide-card-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(14px, 1.5vw, 18px);
+      font-size: clamp(18px, 2vw, 26px);
       color: white;
       margin-bottom: 7px;
       line-height: 1.3;
@@ -819,8 +819,9 @@
 
     /* Tool cards (tools slide type) */
     .slide-tool-card {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-top: 2px solid rgba(212,175,80,0.55);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -866,6 +867,53 @@
         scroll-snap-align: unset;
       }
       .scroll-indicator { display: none; }
+    }
+
+    /* ─── LIGHT MODE OVERRIDES ─── */
+
+    body:has(.slide-container.light) {
+      background: #f5f3ef;
+    }
+
+    .slide-container.light .slide-badge {
+      color: rgba(15,15,25,0.45);
+    }
+
+    .slide-container.light .scroll-indicator {
+      color: rgba(15,15,25,0.22);
+    }
+
+    .slide-container.light .slide-card {
+      background: rgba(15,15,25,0.025);
+      border-color: rgba(15,15,25,0.09);
+    }
+
+    .slide-container.light .slide-card-title {
+      color: #0f0f1a;
+    }
+
+    .slide-container.light .slide-card-body {
+      color: rgba(15,15,25,0.62);
+    }
+
+    .slide-container.light .slide-card-tag {
+      color: rgba(212,175,80,0.82);
+      background: rgba(212,175,80,0.09);
+      border-color: rgba(212,175,80,0.25);
+    }
+
+    .slide-container.light .slide-tool-card {
+      background: rgba(15,15,25,0.04);
+      border-color: rgba(15,15,25,0.12);
+    }
+
+    .slide-container.light .slide-tool-img {
+      background: rgba(15,15,25,0.04);
+    }
+
+    .slide-container.light .slide-quote-chip {
+      border-color: rgba(15,15,25,0.12);
+      color: rgba(15,15,25,0.7);
     }
 
     /* ─── TRYOUT POSTERS ─── */
