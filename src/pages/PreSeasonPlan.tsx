@@ -55,11 +55,15 @@ type SlideTheme = ReturnType<typeof makeTheme>
 const ThemeCtx = createContext<SlideTheme>(makeTheme(false))
 function useT() { return useContext(ThemeCtx) }
 
+const ToggleCtx = createContext<{ light: boolean; onToggle: () => void }>({ light: false, onToggle: () => {} })
+function useToggle() { return useContext(ToggleCtx) }
+
 // ─── Toggle button ─────────────────────────────────────────────────
 
 function ThemeToggle({ light, onToggle }: { light: boolean; onToggle: () => void }) {
   return (
     <button
+      className="theme-toggle-btn"
       aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'}
       onClick={onToggle}
       style={{
@@ -281,6 +285,8 @@ function ImageQuoteBlock({
 
 function RenderTitle({ slide }: { slide: TitleSlide }) {
   const T = useT()
+  const { light, onToggle } = useToggle()
+  const isMobile = useMediaQuery('(max-width: 640px)')
   return (
     <Stack align="center" gap={0} style={{ textAlign: 'center' }}>
       <Text
@@ -318,6 +324,29 @@ function RenderTitle({ slide }: { slide: TitleSlide }) {
       >
         {slide.subtitle}
       </Text>
+      {isMobile && (
+        <button
+          aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'}
+          onClick={onToggle}
+          style={{
+            marginTop: 32,
+            background: 'none',
+            border: `1px solid ${light ? 'rgba(15,15,25,0.2)' : 'rgba(255,255,255,0.18)'}`,
+            color: light ? 'rgba(15,15,25,0.6)' : 'rgba(255,255,255,0.5)',
+            fontFamily: MONO,
+            fontSize: 10,
+            letterSpacing: '2px',
+            textTransform: 'uppercase',
+            padding: '7px 16px',
+            cursor: 'pointer',
+            userSelect: 'none',
+            lineHeight: 1,
+            transition: 'border-color 0.2s, color 0.2s',
+          }}
+        >
+          {light ? '● Dark' : '○ Light'}
+        </button>
+      )}
     </Stack>
   )
 }
@@ -1861,19 +1890,22 @@ function SlideWrapper({ children, isLast }: { children: React.ReactNode; isLast:
 export default function PreSeasonPlan() {
   const [light, setLight] = useState(false)
   const T = useMemo(() => makeTheme(light), [light])
+  const toggle = useMemo(() => ({ light, onToggle: () => setLight(l => !l) }), [light])
   return (
-    <ThemeCtx.Provider value={T}>
-      <ThemeToggle light={light} onToggle={() => setLight(l => !l)} />
-      <Box
-        className={`slide-container${light ? ' light' : ''}`}
-        style={{ background: T.bg }}
-      >
-        {slides.map((slide: PreSeasonSlide, i) => (
-          <SlideWrapper key={slide.id} isLast={i === slides.length - 1}>
-            {renderSlide(slide)}
-          </SlideWrapper>
-        ))}
-      </Box>
-    </ThemeCtx.Provider>
+    <ToggleCtx.Provider value={toggle}>
+      <ThemeCtx.Provider value={T}>
+        <ThemeToggle light={light} onToggle={toggle.onToggle} />
+        <Box
+          className={`slide-container${light ? ' light' : ''}`}
+          style={{ background: T.bg }}
+        >
+          {slides.map((slide: PreSeasonSlide, i) => (
+            <SlideWrapper key={slide.id} isLast={i === slides.length - 1}>
+              {renderSlide(slide)}
+            </SlideWrapper>
+          ))}
+        </Box>
+      </ThemeCtx.Provider>
+    </ToggleCtx.Provider>
   )
 }

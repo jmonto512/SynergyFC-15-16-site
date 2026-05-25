@@ -858,7 +858,8 @@
         overflow: visible;
         justify-content: flex-start;
       }
-      .slide-badge { right: 20px; top: 16px; }
+      .slide-badge { display: none; }
+      .theme-toggle-btn { display: none; }
     }
 
     /* Print — each slide = one landscape PDF page */

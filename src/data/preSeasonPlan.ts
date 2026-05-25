@@ -126,7 +126,7 @@ export const slides: PreSeasonSlide[] = [
     bullets: [
       {
         heading: 'We Coach What We Wish We Had',
-        body: 'A system that makes players smarter, more confident, and more resilient — on and off the field.  U10 deserves a sold foundation with clear goals, not coaches playing headgames with kids who never had a chance to learn the game.',
+        body: 'A system that makes players smarter, more confident, and more resilient — on and off the field.  U11 deserves a sold foundation with clear goals, not coaches playing headgames with kids who never had a chance to learn the game.',
       },
       {
         heading: 'Athletic Burnout Is Real',
@@ -784,7 +784,7 @@ export const slides: PreSeasonSlide[] = [
     ],
     promise: {
       label: 'Our Commitment to You',
-      heading: "If your son's path changes, you'll know well in advance. Our deeper goal is a lifelong love of the game.",
+      heading: "If our son's path changes, you'll know well in advance. Our deeper goal is a lifelong love of the game.",
       body: '',
     },
   },
