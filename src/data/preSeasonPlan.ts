@@ -110,10 +110,20 @@ export const slides: PreSeasonSlide[] = [
         ],
       },
       {
-        name: 'Coach Brent',
+        name: 'Coach Brent Shirk',
         role: 'Assistant Coach',
-        sections: [],
-        placeholder: true,
+        sections: [
+          {
+            label: 'Player Background',
+            icon: IconBallFootball,
+            text: "Played competitive soccer through high school and played indoor into my mid 20's. I have coached Soccer, Football and Wrestling.",
+          },
+          {
+            label: 'Coaching',
+            icon: IconTrophy,
+            text: "Make sure every player knows we're having fun out here, and also that we're serious about it. I hold players accountable without making it a big deal.",
+          },
+        ],
       },
     ],
   },
@@ -190,7 +200,7 @@ export const slides: PreSeasonSlide[] = [
         description: 'Auto-generates game highlights, heat maps, and performance stats after every game. Optional at $25–35/month.',
         image: 'assets/images/dev-tools/trace.png',
         imageFit: 'contain',
-        link: 'https://tracesports.com',
+        link: 'https://traceup.com/',
       },
       {
         name: 'Sports Lab 360 — Video Lessons',
