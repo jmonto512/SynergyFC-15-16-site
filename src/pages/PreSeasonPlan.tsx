@@ -157,11 +157,11 @@ function BulletList({ items }: { items: BulletItem[] }) {
             <Box key={i}>
               <Group gap="sm" align="flex-start" wrap="nowrap">
                 <Dot />
-                <Text style={{ fontSize: 'clamp(16px, 1.7vw, 21px)', lineHeight: 1.4, color: T.text, fontFamily: SERIF }}>
+                <Text style={{ fontSize: 'clamp(18px, 1.9vw, 23px)', lineHeight: 1.4, color: T.text, fontFamily: SERIF }}>
                   {item.heading}
                 </Text>
               </Group>
-              <Text style={{ paddingLeft: 20, marginTop: 4, fontSize: 'clamp(15px, 1.5vw, 18px)', lineHeight: 1.75, color: T.r(0.75), fontWeight: 500 }}>
+              <Text style={{ paddingLeft: 20, marginTop: 4, fontSize: 'clamp(13px, 1.35vw, 15px)', lineHeight: 1.75, color: T.r(0.72) }}>
                 {item.body}
               </Text>
             </Box>
@@ -567,13 +567,13 @@ function RenderGrid({ slide }: { slide: GridSlide }) {
             {Array.isArray(item.body) ? (
               <ul style={{ margin: 0, paddingLeft: 18 }}>
                 {item.body.map((line, i) => (
-                  <li key={i} style={{ fontSize: 'clamp(14px, 1.3vw, 16px)', lineHeight: 1.65, color: T.r(0.75), fontWeight: 500, marginBottom: i < item.body.length - 1 ? 6 : 0 }}>
+                  <li key={i} style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', lineHeight: 1.65, color: T.r(0.72), marginBottom: i < item.body.length - 1 ? 6 : 0 }}>
                     {line}
                   </li>
                 ))}
               </ul>
             ) : (
-              <Text style={{ fontSize: 'clamp(14px, 1.3vw, 16px)', lineHeight: 1.65, color: T.r(0.75), fontWeight: 500 }}>{item.body}</Text>
+              <Text style={{ fontSize: 'clamp(13px, 1.2vw, 15px)', lineHeight: 1.65, color: T.r(0.72) }}>{item.body}</Text>
             )}
           </Box>
         ))}
@@ -640,19 +640,19 @@ function RenderFeatures({ slide }: { slide: FeaturesSlide }) {
                   }}>
                     <item.icon size={20} stroke={1.4} color={`${T.gold}0.85)`} />
                   </Box>
-                  <Text style={{ fontFamily: SERIF, fontSize: 'clamp(15px, 1.6vw, 20px)', color: T.text, lineHeight: 1.25, marginBottom: 8 }}>
+                  <Text style={{ fontFamily: SERIF, fontSize: 'clamp(18px, 2vw, 24px)', color: T.text, lineHeight: 1.25, marginBottom: 8 }}>
                     {item.title}
                   </Text>
                   {Array.isArray(item.description) ? (
                     <ul style={{ margin: 0, paddingLeft: 18 }}>
                       {item.description.map((line, i) => (
-                        <li key={i} style={{ fontSize: 'clamp(14px, 1.3vw, 16px)', color: T.r(0.75), lineHeight: 1.6, fontWeight: 500, marginBottom: i < item.description.length - 1 ? 6 : 0 }}>
+                        <li key={i} style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: T.r(0.72), lineHeight: 1.6, marginBottom: i < item.description.length - 1 ? 6 : 0 }}>
                           {line}
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <Text style={{ fontSize: 'clamp(14px, 1.3vw, 16px)', color: T.r(0.75), lineHeight: 1.6, fontWeight: 500 }}>
+                    <Text style={{ fontSize: 'clamp(12px, 1.1vw, 14px)', color: T.r(0.72), lineHeight: 1.6 }}>
                       {item.description}
                     </Text>
                   )}
@@ -719,7 +719,7 @@ function RenderInterstitial({ slide }: { slide: InterstitialSlide }) {
             fontFamily: SERIF,
             fontSize: 'clamp(20px, 2.6vw, 34px)',
             fontStyle: 'italic',
-            color: i === 0 ? T.text : T.r(0.55),
+            color: T.text,
             lineHeight: 1.5,
           }}
         >
@@ -760,7 +760,7 @@ function RenderStory({ slide }: { slide: StorySlide }) {
               <Text style={{ fontFamily: SERIF, fontSize: 'clamp(17px, 1.8vw, 22px)', color: T.text, lineHeight: 1.25, marginBottom: 8 }}>
                 {bullet.heading}
               </Text>
-              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', lineHeight: 1.72, color: T.r(0.75), fontWeight: 500 }}>
+              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', lineHeight: 1.72, color: T.r(0.72) }}>
                 {bullet.body}
               </Text>
             </Box>
@@ -1054,7 +1054,7 @@ function RenderDevSplit({ slide }: { slide: DevSplitSlide }) {
                 <Text style={{ fontFamily: SERIF, fontSize: 'clamp(15px, 1.6vw, 19px)', color: T.text, lineHeight: 1.25, marginBottom: 6 }}>
                   {item.heading}
                 </Text>
-                <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', lineHeight: 1.68, color: T.r(0.68), fontWeight: 500 }}>
+                <Text style={{ fontSize: 'clamp(12px, 1.2vw, 14px)', lineHeight: 1.68, color: T.r(0.68) }}>
                   {item.body}
                 </Text>
               </Box>
@@ -1177,7 +1177,7 @@ function RenderZpdGoals({ slide }: { slide: ZpdGoalsSlide }) {
               <Text style={{ fontFamily: SERIF, fontSize: 'clamp(16px, 1.7vw, 21px)', color: T.text, lineHeight: 1.25, marginBottom: 6 }}>
                 {item.heading}
               </Text>
-              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', lineHeight: 1.68, color: T.r(0.68), fontWeight: 500 }}>
+              <Text style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', lineHeight: 1.68, color: T.r(0.68) }}>
                 {item.body}
               </Text>
             </Box>
@@ -1888,7 +1888,7 @@ function SlideWrapper({ children, isLast }: { children: React.ReactNode; isLast:
 // ─── Page ─────────────────────────────────────────────────────────
 
 export default function PreSeasonPlan() {
-  const [light, setLight] = useState(false)
+  const [light, setLight] = useState(true)
   const T = useMemo(() => makeTheme(light), [light])
   const toggle = useMemo(() => ({ light, onToggle: () => setLight(l => !l) }), [light])
   return (
